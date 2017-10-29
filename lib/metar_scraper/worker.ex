@@ -4,6 +4,7 @@ defmodule MetarScraper.Worker do
   alias Hound.Helpers.{Element}
 
   @url "https://flightplanning.navcanada.ca/cgi-bin/CreePage.pl?Langue=anglais&Page=Fore-obs%2Fmetar-taf-map&TypeDoc=html"
+  @stations %{ontario_quebec: "CYYW CYND CYAT CYOW CYLA CYPO CYBG CYWA CYTL CYPQ CYBN CYPL CYLD CYQB CYCK CYRL CYMT CYRJ CYHD CYUY CYXR CZSJ CZEM CYSK CYER CYZR CYGQ CYAM CYZE CYKL CYHM CYSC CYPH CYXL CYYU CYSN CYQK CYSB CYGK CYTQ CYKF CYTJ CYVP CYQT CYGW CYTS CYGL CYTZ CYAD CYKZ CYAH CYYZ CYLH CYOO CYXU CYTR CYSP CYRQ CYNM CYMU CYMX CYVO CYUL CYOY CYHU CWQG CYMO CYKQ CYQA CYXZ CZMD CYNC CYHH CYVV CYYB CYQG CYKP"}
 
   ## Client API
   def start_link(opts \\ []) do
@@ -13,6 +14,11 @@ defmodule MetarScraper.Worker do
   def get_metars(pid, station) do
     GenServer.call(pid, {:metar, station})
   end
+
+  def get_metars_for_region(pid, region) do
+    GenServer.call(pid, {:region_metar, region})
+  end
+
 
   def clear_cache(pid) do
     GenServer.call(pid, {:clear_cache})
@@ -32,19 +38,13 @@ defmodule MetarScraper.Worker do
   end
 
   def handle_call({:metar, station}, {_from, _ref}, state) do
-    case Map.has_key?(state, station) do
-      true ->
-        # rudimentary caching (with no expiry)
-        {:reply, Map.get(state, station), state}
-      false ->
-        case metar_taf_for(station) do
-          {:ok, metars} ->
-            new_state = Map.put(state, station, metars)
-            {:reply, metars, new_state}
-          _ ->
-            {:reply, :error, "something went wrong"}
-        end
-    end
+    metars = metar_taf_for(station)
+    {:reply, metars, metars}
+  end
+
+  def handle_call({:region_metar, region}, {_from, _ref}, state) do
+    resp = metar_taf_for(Map.get(@stations, region))
+    {:reply, resp, state}
   end
 
   def handle_cast(:stop, state) do
@@ -53,16 +53,18 @@ defmodule MetarScraper.Worker do
 
   ## Helper Functions
   defp metar_taf_for(station) do
-    report = get_page(station)
+    report = scrape(station)
+    stations = station |> String.split(" ") |> List.wrap
+
     {:ok,
       %{
-        :METAR => extract(report, station, :metar),
-        :TAF =>   extract(report, station, :taf)
+        :METAR => stations |> Enum.map(&(extract(report, &1, :metar))),
+        :TAF =>   stations |> Enum.map(&(extract(report, &1, :taf)))
       }
     }
   end
 
-  defp get_page(station) do
+  defp scrape(station) do
     Hound.start_session
 
     navigate_to @url
