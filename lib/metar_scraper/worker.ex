@@ -60,8 +60,8 @@ defmodule MetarScraper.Worker do
 
     {:ok,
       %{
-        :METAR => stations |> Enum.map(&(extract(report, &1, :metar))),
-        :TAF =>   stations |> Enum.map(&(extract(report, &1, :taf)))
+        :stations => stations
+                     |> Enum.map(&(extract(report, &1, :metar)))
       }
     }
   end
@@ -83,13 +83,13 @@ defmodule MetarScraper.Worker do
 
   defp extract(text, station, :metar) do
     #TODO regex should also accept LWIS and SPECI observations
-    {:ok, regex} = Regex.compile("METAR #{station}.+")
-    regex |> extract(text)
-  end
-
-  defp extract(text, station, :taf) do
-    {:ok, regex} = Regex.compile("TAF #{station}.+")
-    regex |> extract(text)
+    {:ok, metar_regex} = Regex.compile("METAR #{station}.+")
+    {:ok, taf_regex} = Regex.compile("TAF #{station}.+")
+    %{
+      station: station,
+      metar: extract(metar_regex, text),
+      taf: extract(taf_regex, text)
+    }
   end
 
   defp extract(regex, text) when is_binary(text) do
