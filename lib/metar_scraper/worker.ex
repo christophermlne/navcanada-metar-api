@@ -2,6 +2,7 @@ defmodule MetarScraper.Worker do
   use GenServer
   use Hound.Helpers
   alias Hound.Helpers.{Element}
+  alias MetarScraper.Station
 
   @url "https://flightplanning.navcanada.ca/cgi-bin/CreePage.pl?Langue=anglais&Page=Fore-obs%2Fmetar-taf-map&TypeDoc=html"
 
@@ -58,12 +59,7 @@ defmodule MetarScraper.Worker do
   defp metar_taf_for(stations) do
     report = scrape(stations) # stations must be a string of stations separated by a space
 
-    {:ok,
-      %{
-        :stations => stations
-                     |> Enum.map(&(extract(report, &1, :metar)))
-      }
-    }
+    {:ok, stations |> Enum.map(&(extract(report, &1, :metar)))}
   end
 
   defp scrape(station) when is_list(station), do:
@@ -85,9 +81,11 @@ defmodule MetarScraper.Worker do
     #TODO regex should also accept LWIS and SPECI observations
     {:ok, metar_regex} = Regex.compile("METAR #{station}.+")
     {:ok, taf_regex} = Regex.compile("TAF #{station}.+")
-    %{
+    [current | history] = extract(metar_regex, text)
+    %Station{
       station: station,
-      metar: extract(metar_regex, text),
+      current: current,
+      history: history,
       taf: extract(taf_regex, text)
     }
   end
@@ -99,7 +97,6 @@ defmodule MetarScraper.Worker do
       |> List.first
       |> List.first
     end
-    IO.puts(inspect(text))
 
     text
     |> String.split("=")
