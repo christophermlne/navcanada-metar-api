@@ -2,67 +2,70 @@ defmodule MetarScraper.Worker do
   use GenServer
   use Hound.Helpers
   alias Hound.Helpers.{Element}
+  alias MetarScraper.Station
 
   @url "https://flightplanning.navcanada.ca/cgi-bin/CreePage.pl?Langue=anglais&Page=Fore-obs%2Fmetar-taf-map&TypeDoc=html"
 
+  @stations %{
+    arctic:              ~w(CYLT CWGZ CYAB CYGZ CWEU CYIO CYEU CYRB),
+    atlantic:            ~w(CYBC CYFT CZBF CYMH CWKW CYQM CWYK CYYY CWCA CYDP CYCA CYNA CYYG CYPD CZUM CWSA CYDF CSB2 CYFC CST5 CYCX CWZZ CYQX CYSJ CYGP LFVP CYYR CYZV CYZX CYAY CYAW CYYT CYHZ CYSL CYGV CYJT CYGR CYQY CYLU CWTU CWWU CYWK CCX2 CYQI CYBX),
+    ontario_quebec:      ~w(CYYW CYND CYAT CYOW CYLA CYPO CYBG CYWA CYTL CYPQ CYBN CYPL CYLD CYQB CYCK CYRL CYMT CYRJ CYHD CYUY CYXR CZSJ CZEM CYSK CYER CYZR CYGQ CYAM CYZE CYKL CYHM CYSC CYPH CYXL CYYU CYSN CYQK CYSB CYGK CYTQ CYKF CYTJ CYVP CYQT CYGW CYTS CYGL CYTZ CYAD CYKZ CYAH CYYZ CYLH CYOO CYXU CYTR CYSP CYRQ CYNM CYMU CYMX CYVO CYUL CYOY CYHU CWQG CYMO CYKQ CYQA CYXZ CZMD CYNC CYHH CYVV CYYB CYQG CYKP),
+    pacific:             ~w(CYXX CYCD CBBC CYYF CYBD CYZT CYCP CYPW CYBL CYXS CYCG CYPR CYCQ CYDC CWCL CYQZ CYIN CYRV CYQQ CYZP CYXC CYYD CYDQ CWSW CWDL CYSW CYDL CZST CYYE CYXT CYXJ CYAZ CYGE CYVR CYHE CYWH CYKA CYYJ CYLW CAW4 CWLY CBE9 CYZY CWAE CZMT CYWL CWWQ),
+    prairies:            ~w(CYBV CYLL CYBR CYYL CYVT CYLJ CYYC CYXH CYBW CYMJ CYYQ CYBU CYOD CYQW CYDN CYNE CYEG CYPE CYED CZPC CZVL CYPG CYET CWIQ CYEN CYPA CYFO CYQF CYPY CYQR CYMM CYXE CYGX CYZH CYQU CYSF CYOJ CYYN CYIV CYBQ CWHN CYQD CYKJ CYTH CYKY CYZU CYVC CYWG CYQL CYQV),
+    nunavut:             ~w(CYKO CYIK CYEK CYKG CYBK CYAS CWOB CYLC CWVD CYBB CWRF CWLX CYTE CYUT CWFD CYXP CWUP CYPX CWYM CYVM CYCS CYHA CYCY CYRT CYZS CWRH CWUW CWRX CYHK CYZG CYUX CYUS CYGT CYYH CYFB CYXN),
+    yukon_and_northwest: ~w(CYKD CWKP CYXQ CWKM CYDB CYCO CYCB CYUJ CZCP CWLI CWPX CYLK CYVL CYMA CWXR CYVQ CYDA CYOC CWON CYPC CYWJ CYSY CYOA CYUA CZFA CWVH CYGH CYZW CYJF CYUB CZFM CZFN CYFR CYHI CYFS CYQH CYSM CYWE CYRA CYXY CWIL CYWY CYHY CYZF CYEV)
+  }
+
+
   ## Client API
-  def start_link(opts \\ []) do
+  def start_link(opts \\ []), do:
     GenServer.start_link(__MODULE__, :ok, opts)
-  end
 
-  def get_metars(pid, station) do
-    GenServer.call(pid, {:metar, station})
-  end
+  def get_metars_for_station(pid, station), do:
+    GenServer.call(pid, {:fetch_station, [station]})
 
-  def clear_cache(pid) do
+  def get_metars_for_region(pid, region), do:
+    GenServer.call(pid, {:fetch_region, region})
+
+  def clear_cache(pid), do:
     GenServer.call(pid, {:clear_cache})
-  end
 
-  def stop(pid) do
+  def stop(pid), do:
     GenServer.cast(pid, :stop)
-  end
+
 
   ## Server Callbacks
-  def init(:ok) do
+  def init(:ok), do:
     {:ok, %{}}
-  end
 
-  def handle_call({:clear_cache}, {_from, _ref}, _state) do
+  def handle_call({:clear_cache}, {_from, _ref}, _state), do:
     {:reply, :ok, %{}}
+
+  def handle_call({:fetch_station, station}, {_from, _ref}, state) do
+    metars = metar_taf_for(station)
+    {:reply, metars, state}
   end
 
-  def handle_call({:metar, station}, {_from, _ref}, state) do
-    case Map.has_key?(state, station) do
-      true ->
-        # rudimentary caching (with no expiry)
-        {:reply, Map.get(state, station), state}
-      false ->
-        case metar_taf_for(station) do
-          {:ok, metars} ->
-            new_state = Map.put(state, station, metars)
-            {:reply, metars, new_state}
-          _ ->
-            {:reply, :error, "something went wrong"}
-        end
-    end
+  def handle_call({:fetch_region, region}, {_from, _ref}, state) do
+    resp = metar_taf_for(Map.get(@stations, region))
+    {:reply, resp, state}
   end
 
-  def handle_cast(:stop, state) do
+  def handle_cast(:stop, state), do:
     {:stop, :normal, state}
-  end
+
 
   ## Helper Functions
-  defp metar_taf_for(station) do
-    report = get_page(station)
-    {:ok,
-      %{
-        :METAR => extract(report, station, :metar),
-        :TAF =>   extract(report, station, :taf)
-      }
-    }
+  defp metar_taf_for(stations) do
+    report = scrape(stations) # stations must be a string of stations separated by a space
+
+    {:ok, stations |> Enum.map(&(extract(report, &1, :metar)))}
   end
 
-  defp get_page(station) do
+  defp scrape(station) when is_list(station), do:
+    Enum.join(station, " ") |> scrape
+
+  defp scrape(station) when is_binary(station) do
     Hound.start_session
 
     navigate_to @url
@@ -75,15 +78,16 @@ defmodule MetarScraper.Worker do
   end
 
   defp extract(text, station, :metar) do
-    {:ok, regex} = Regex.compile("METAR #{station}.+")
-    regex
-    |> extract(text)
-  end
-
-  defp extract(text, station, :taf) do
-    {:ok, regex} = Regex.compile("TAF #{station}.+")
-    regex
-    |> extract(text)
+    #TODO regex should also accept LWIS and SPECI observations
+    {:ok, metar_regex} = Regex.compile("METAR #{station}.+")
+    {:ok, taf_regex} = Regex.compile("TAF #{station}.+")
+    [current | history] = extract(metar_regex, text)
+    %Station{
+      station: station,
+      current: current,
+      history: history,
+      taf: extract(taf_regex, text)
+    }
   end
 
   defp extract(regex, text) when is_binary(text) do
