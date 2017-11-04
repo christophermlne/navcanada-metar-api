@@ -78,10 +78,15 @@ defmodule MetarScraper.Worker do
   end
 
   defp extract(text, station, :metar) do
-    #TODO regex should also accept LWIS and SPECI observations
-    {:ok, metar_regex} = Regex.compile("METAR #{station}.+")
+    {:ok, metar_regex} = Regex.compile("(METAR|LWIS|SPECI) #{station}.+")
     {:ok, taf_regex} = Regex.compile("TAF #{station}.+")
-    [current | history] = extract(metar_regex, text)
+
+    [current | history] = case extract(metar_regex, text) do
+      [] -> [:error, :error]
+      [current | nil] -> [current, []]
+      [current | history] -> [current, history]
+    end
+
     %Station{
       station: station,
       current: current,
