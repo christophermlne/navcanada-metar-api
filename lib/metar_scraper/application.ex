@@ -1,6 +1,4 @@
 defmodule MetarScraper.Application do
-  # See https://hexdocs.pm/elixir/Application.html
-  # for more information on OTP Applications
   @moduledoc false
 
   use Application
@@ -8,8 +6,8 @@ defmodule MetarScraper.Application do
   defp poolboy_config do
     [{:name, {:local, :scraper_worker_pool}},
      {:worker_module, MetarScraper.Worker},
-     {:size, 1},
-     {:max_overflow, 1}]
+     {:size, 5},
+     {:max_overflow, 2}]
   end
 
   def start(_type, _args) do
@@ -20,8 +18,6 @@ defmodule MetarScraper.Application do
       worker(MetarScraper.Server, []),
     ]
 
-    # See https://hexdocs.pm/elixir/Supervisor.html
-    # for other strategies and supported options
     opts = [strategy: :one_for_one, name: MetarScraper.Supervisor]
     Supervisor.start_link(children, opts)
   end

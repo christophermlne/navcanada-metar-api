@@ -9,8 +9,8 @@ defmodule MetarScraper.Region do
     yukon_and_northwest: ~w(CYKD CWKP CYXQ CWKM CYDB CYCO CYCB CYUJ CZCP CWLI CWPX CYLK CYVL CYMA CWXR CYVQ CYDA CYOC CWON CYPC CYWJ CYSY CYOA CYUA CZFA CWVH CYGH CYZW CYJF CYUB CZFM CZFN CYFR CYHI CYFS CYQH CYSM CYWE CYRA CYXY CWIL CYWY CYHY CYZF CYEV)
   }
 
-  def regions do
-    @regions
+  def names do
+    Map.keys(@regions)
   end
 
   def stations_for(region) do
