@@ -79,7 +79,7 @@ defmodule MetarScraper.Worker do
     %Station{
       station: station,
       current: current,
-      history: history,
+      history: history |> List.first,
       taf: extract(taf_regex, text)
     }
   end

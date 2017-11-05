@@ -17,7 +17,7 @@ defmodule MetarScraper.Server do
   def init(:ok) do
     IO.puts "performing initial scrape"
     Process.send_after(self(), :refresh_data, @refresh_interval)
-    {:ok, %{ retreived_at: Time.utc_now(), data: get_data_for_regions()}}
+    {:ok, update_data()}
   end
 
   def handle_call({:get, station}, {_from, _ref}, state), do:
@@ -29,11 +29,20 @@ defmodule MetarScraper.Server do
   def handle_info(:refresh_data, _state) do
     IO.puts "performing scheduled scrape"
     Process.send_after(self(), :refresh_data, @refresh_interval)
-    {:noreply, %{ retreived_at: Time.utc_now(), data: get_data_for_regions()}}
+    {:noreply, update_data()}
+  end
+
+  def handle_info(:manually_refresh_data, _state) do
+    IO.puts "performing manual scrape"
+    {:noreply, update_data()}
   end
 
 
   ## Helper Functions
+  defp update_data() do
+    %{ retrieved_at: timestamp() |> DateTime.to_iso8601, data: get_data_for_regions()}
+  end
+
   defp get_data_for_regions() do
     Region.names()
     |> Enum.map(&Task.async(fn ->
@@ -51,6 +60,10 @@ defmodule MetarScraper.Server do
     report = Enum.find(data[:data], fn (report) ->
       Map.get(report, :station) == station
     end)
-    %{retreived_at: Map.get(data, :retreived_at), report: report}
+    %{retrieved_at: Map.get(data, :retrieved_at), data: report}
+  end
+
+  defp timestamp do
+    DateTime.utc_now |> DateTime.to_iso8601
   end
 end
