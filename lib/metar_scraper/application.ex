@@ -3,13 +3,6 @@ defmodule MetarScraper.Application do
 
   use Application
 
-  defp poolboy_config do
-    [{:name, {:local, :scraper_worker_pool}},
-     {:worker_module, MetarScraper.Worker},
-     {:size, 5},
-     {:max_overflow, 2}]
-  end
-
   def start(_type, _args) do
     import Supervisor.Spec, warn: false
 
@@ -20,5 +13,12 @@ defmodule MetarScraper.Application do
 
     opts = [strategy: :one_for_one, name: MetarScraper.Supervisor]
     Supervisor.start_link(children, opts)
+  end
+
+  defp poolboy_config do
+    [{:name, {:local, :scraper_worker_pool}},
+     {:worker_module, MetarScraper.Worker},
+     {:size, 5},
+     {:max_overflow, 2}]
   end
 end
