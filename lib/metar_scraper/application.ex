@@ -1,20 +1,24 @@
 defmodule MetarScraper.Application do
-  # See https://hexdocs.pm/elixir/Application.html
-  # for more information on OTP Applications
   @moduledoc false
 
   use Application
 
   def start(_type, _args) do
-    # List all child processes to be supervised
+    import Supervisor.Spec, warn: false
+
     children = [
-      # Starts a worker by calling: MetarScraper.Worker.start_link(arg)
-      # {MetarScraper.Worker, arg},
+      :poolboy.child_spec(:scraper_worker_pool, poolboy_config()),
+      worker(MetarScraper.Server, []),
     ]
 
-    # See https://hexdocs.pm/elixir/Supervisor.html
-    # for other strategies and supported options
     opts = [strategy: :one_for_one, name: MetarScraper.Supervisor]
     Supervisor.start_link(children, opts)
+  end
+
+  defp poolboy_config do
+    [{:name, {:local, :scraper_worker_pool}},
+     {:worker_module, MetarScraper.Worker},
+     {:size, 5},
+     {:max_overflow, 2}]
   end
 end
