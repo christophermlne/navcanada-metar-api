@@ -3,7 +3,7 @@ defmodule MetarScraper.Server do
 
   alias MetarScraper.{Worker,Region}
 
-  @refresh_interval 600000 # 10 minutes
+  @refresh_interval 1000 * 60 * 10 # 10 minutes
 
   ## Client Api
   def start_link(), do:
@@ -17,7 +17,7 @@ defmodule MetarScraper.Server do
   def init(:ok) do
     IO.puts "performing initial scrape"
     Process.send_after(self(), :refresh_data, @refresh_interval)
-    {:ok, %{ data: get_data_for_regions()}}
+    {:ok, %{ retreived_at: Time.utc_now(), data: get_data_for_regions()}}
   end
 
   def handle_call({:get, station}, {_from, _ref}, state), do:
@@ -29,7 +29,7 @@ defmodule MetarScraper.Server do
   def handle_info(:refresh_data, _state) do
     IO.puts "performing scheduled scrape"
     Process.send_after(self(), :refresh_data, @refresh_interval)
-    {:noreply, %{ data: get_data_for_regions()}}
+    {:noreply, %{ retreived_at: Time.utc_now(), data: get_data_for_regions()}}
   end
 
 
@@ -48,8 +48,9 @@ defmodule MetarScraper.Server do
   end
 
   def get_station_report(station, data) do
-    Enum.find(data[:data], fn (report) ->
+    report = Enum.find(data[:data], fn (report) ->
       Map.get(report, :station) == station
     end)
+    %{retreived_at: Map.get(data, :retreived_at), report: report}
   end
 end
