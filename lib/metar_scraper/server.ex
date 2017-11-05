@@ -3,6 +3,8 @@ defmodule MetarScraper.Server do
 
   alias MetarScraper.{Worker,Region}
 
+  @refresh_interval 600000 # 10 minutes
+
   ## Client Api
   def start_link(), do:
     GenServer.start_link(__MODULE__, :ok, [name: __MODULE__])
@@ -13,20 +15,27 @@ defmodule MetarScraper.Server do
 
   ## Server Callbacks
   def init(:ok) do
-    {:ok, %{ data: initialize_data_for(Region.names())}}
+    IO.puts "performing initial scrape"
+    Process.send_after(self(), :refresh_data, @refresh_interval)
+    {:ok, %{ data: get_data_for_regions()}}
   end
 
-  def handle_call({:get, station}, {_from, _ref}, state) do
+  def handle_call({:get, station}, {_from, _ref}, state), do:
     {:reply, get_station_report(station, state), state}
-  end
 
   def handle_cast(:stop, state), do:
     {:stop, :normal, state}
 
+  def handle_info(:refresh_data, _state) do
+    IO.puts "performing scheduled scrape"
+    Process.send_after(self(), :refresh_data, @refresh_interval)
+    {:noreply, %{ data: get_data_for_regions()}}
+  end
+
 
   ## Helper Functions
-  defp initialize_data_for(regions) do
-    regions
+  defp get_data_for_regions() do
+    Region.names()
     |> Enum.map(&Task.async(fn ->
          :poolboy.transaction(:scraper_worker_pool, fn (pid) ->
            case Worker.get_metars_for_region(pid, &1) do
@@ -39,6 +48,8 @@ defmodule MetarScraper.Server do
   end
 
   def get_station_report(station, data) do
-    Enum.find(data[:data], fn (report) -> Map.get(report, :station) == station end)
+    Enum.find(data[:data], fn (report) ->
+      Map.get(report, :station) == station
+    end)
   end
 end
