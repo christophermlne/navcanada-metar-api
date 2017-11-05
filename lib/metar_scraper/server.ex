@@ -47,7 +47,7 @@ defmodule MetarScraper.Server do
     |> Enum.reduce([], fn(x, acc) -> x ++ acc end) # TODO adjust worker response so this can be removed
   end
 
-  def get_station_report(station, data) do
+  defp get_station_report(station, data) do
     report = Enum.find(data[:data], fn (report) ->
       Map.get(report, :station) == station
     end)
