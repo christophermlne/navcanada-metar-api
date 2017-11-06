@@ -40,7 +40,7 @@ defmodule MetarScraper.Server do
 
   ## Helper Functions
   defp update_data() do
-    %{ retrieved_at: timestamp() |> DateTime.to_iso8601, data: get_data_for_regions()}
+    %{ retrieved_at: timestamp(), data: get_data_for_regions()}
   end
 
   defp get_data_for_regions() do
