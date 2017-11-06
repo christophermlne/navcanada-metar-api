@@ -1,4 +1,4 @@
-defmodule NavcanadaMetarApi2.Mixfile do
+defmodule NavcanadaMetarApi.Mixfile do
   use Mix.Project
 
   def project do
