@@ -72,7 +72,7 @@ defmodule MetarScraper.Worker do
       |> Enum.map(fn {station, reports} ->
            [current | history] = reports
            %Station{
-              station: station,
+              station: station |> List.to_string,
               elevation_m: current.elevation_m, # |> List.to_float,
               longitude: current.longitude, # |> List.to_float,
               latitude: current.latitude, # |> List.to_float,

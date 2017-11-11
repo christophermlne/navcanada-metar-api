@@ -58,7 +58,7 @@ defmodule MetarScraper.Server do
 
   defp get_station_report(station, data) do
     report = Enum.find(data[:data], fn (report) ->
-      Map.get(report, :station) |> List.to_string == station
+      Map.get(report, :station) == station
     end)
     %{retrieved_at: Map.get(data, :retrieved_at), data: report}
   end
