@@ -20,8 +20,6 @@ use Mix.Config
 #
 #     config :logger, level: :info
 #
-config :hound, driver: "phantomjs"
-# config :hound, port: 1234, browser: "firefox"
 
 # It is also possible to import configuration files, relative to this
 # directory. For example, you can emulate configuration per environment
