@@ -17,10 +17,13 @@ defmodule Api.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+    get "/metar", PageController, :index
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", Api do
-  #   pipe_through :api
-  # end
+  scope "/api", Api do
+    pipe_through :api
+
+    get "/", PageController, :index
+  end
 end

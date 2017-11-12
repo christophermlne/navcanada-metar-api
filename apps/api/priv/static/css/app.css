@@ -24,15 +24,6 @@ body, form, ul, table {
 .header ul {
   margin-top: 0;
 }
-.logo {
-  width: 200px;
-  height: 27px;
-  background-size: 100%;
-  display: inline-block;
-  margin-top: 0.5em;
-  margin-bottom: 1em;
-  background-image: url("/images/phoenix.png");
-}
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
@@ -70,12 +61,7 @@ body, form, ul, table {
     padding-right: 0;
     padding-left: 0;
   }
-  .logo {
-    width: 519px;
-    height: 71px;
-    margin-top: 0;
-    background-size: 519px 71px;
-  }
+
   /* Space out the masthead */
   .header {
     margin-bottom: 30px;
