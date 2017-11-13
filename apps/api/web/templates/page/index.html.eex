@@ -6,14 +6,22 @@
 <%= if @station_id == "" do %>
   <p>Enter a station code. e.g. <a href="/metar?station=CYYZ">CYYZ</a> or <a href="/metar?station=CYKF">CYKF</a></p>
 <% else %>
-  <h2><b>Station: <%= @station_id %></b></h2>
+  <%= if @error do %>
+    <p><%= @error %></p>
+  <% else %>
+    <h2><b>Station: <%= @station_id %></b></h2>
 
-  <h3>Current</h3>
-  <%= @report.current %><br>
+    <%= if @retrieved_at do %>
+      <%= @retrieved_at %>
+    <%= end %>
 
-  <h3>History</h3>
+    <h3>Current</h3>
+    <%= @report.current %><br>
 
-  <%= for key <- @report.history do %>
-    <%= key %><br>
-  <% end %>
+    <h3>History</h3>
+
+    <%= for key <- @report.history do %>
+      <%= key %><br>
+    <% end %>
+  <%= end %>
 <%= end %>
