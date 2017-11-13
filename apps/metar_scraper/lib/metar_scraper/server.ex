@@ -5,15 +5,20 @@ defmodule MetarScraper.Server do
 
   @refresh_interval 1000 * 60 * 10 # 10 minutes
 
-  ## Client Api
+  ##############
+  # Client API #
+  ##############
+
   def start_link(), do:
     GenServer.start_link(__MODULE__, :ok, [name: __MODULE__])
 
   def get(pid, station), do:
     GenServer.call(pid, {:get, station})
 
+  ####################
+  # Server Callbacks #
+  ####################
 
-  ## Server Callbacks
   def init(:ok) do
     IO.puts "performing initial scrape"
     Process.send_after(self(), :refresh_data, @refresh_interval)
@@ -37,8 +42,10 @@ defmodule MetarScraper.Server do
     {:noreply, update_data()}
   end
 
+  ####################
+  # Helper Functions #
+  ####################
 
-  ## Helper Functions
   defp update_data() do
     %{ retrieved_at: timestamp(), data: get_data_for_regions()}
   end
@@ -57,10 +64,10 @@ defmodule MetarScraper.Server do
   end
 
   defp get_station_report(station, data) do
-    report = Enum.find(data[:data], fn (report) ->
-      Map.get(report, :station) == station
-    end)
-    %{retrieved_at: Map.get(data, :retrieved_at), data: report}
+    case data[:data] |> Enum.find(&(Map.get(&1, :station) == station)) do
+      nil ->    {:error, "Station does not exist or report not available."}
+      report -> {:ok, %{retrieved_at: Map.get(data, :retrieved_at), data: report}}
+    end
   end
 
   defp timestamp do

@@ -2,7 +2,10 @@ defmodule MetarScraper.Worker do
   use GenServer
   alias MetarScraper.{Station,Region}
 
-  ## Client API
+  ##############
+  # Client API #
+  ##############
+
   def start_link(opts \\ []), do:
     GenServer.start_link(__MODULE__, :ok, opts)
 
@@ -18,8 +21,10 @@ defmodule MetarScraper.Worker do
   def stop(pid), do:
     GenServer.cast(pid, :stop)
 
+  ####################
+  # Server Callbacks #
+  ####################
 
-  ## Server Callbacks
   def init(:ok), do:
     {:ok, %{}}
 
@@ -35,8 +40,10 @@ defmodule MetarScraper.Worker do
   def handle_cast(:stop, state), do:
     {:stop, :normal, state}
 
+  ####################
+  # Helper Functions #
+  ####################
 
-  ## Helper Functions
   defp metar_taf_for(stations), do:
     {:ok, stations |> scrape |> transform_xml} # stations: a string of station ids separated by a space
 

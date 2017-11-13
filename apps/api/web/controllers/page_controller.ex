@@ -1,16 +1,17 @@
 defmodule Api.PageController do
   use Api.Web, :controller
 
-  alias MetarScraper.Server
-
   def index(conn, %{ "station" => station_id }) do
-    reports = case Server.get(Server, station_id) do
-      %{ data: %{ reports: reports} } -> reports
-      %{ data: nil } -> %{ current: "Error. Station does not exist or report not available.", history: []}
+    import MetarScraper
+
+    case get(pid(), station_id) do
+      {:ok, %{ data: %{ reports: reports}, retrieved_at: retrieved_at }} ->
+        render conn, "index.html", station_id: station_id, report: reports, error: nil, retrieved_at: retrieved_at
+      {:error, msg} ->
+        render conn, "index.html", station_id: station_id, report: %{ history: [], currrent: ""}, error: msg, retrieved_at: nil
     end
-    render conn, "index.html", station_id: station_id, report: reports
   end
 
   def index(conn, _params), do:
-    render conn, "index.html", station_id: "", report: %{ history: [], current: ""}
+    render conn, "index.html", station_id: "", report: %{ history: [], current: ""}, error: nil, retrieved_at: nil
 end
