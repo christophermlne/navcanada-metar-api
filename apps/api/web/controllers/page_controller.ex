@@ -2,7 +2,7 @@ defmodule Api.PageController do
   use Api.Web, :controller
 
   def index(conn, %{ "station" => station_id }) do
-    import MetarScraper
+    import MetarService
 
     case get(pid(), station_id) do
       {:ok, %{ data: %{ reports: reports}, retrieved_at: retrieved_at }} ->

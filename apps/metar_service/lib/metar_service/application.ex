@@ -1,4 +1,4 @@
-defmodule MetarScraper.Application do
+defmodule MetarService.Application do
   @moduledoc false
 
   use Application
@@ -8,16 +8,16 @@ defmodule MetarScraper.Application do
 
     children = [
       :poolboy.child_spec(:scraper_worker_pool, poolboy_config()),
-      worker(MetarScraper.Server, []),
+      worker(MetarService.Server, []),
     ]
 
-    opts = [strategy: :one_for_one, name: MetarScraper.Supervisor]
+    opts = [strategy: :one_for_one, name: MetarService.Supervisor]
     Supervisor.start_link(children, opts)
   end
 
   defp poolboy_config do
     [{:name, {:local, :scraper_worker_pool}},
-     {:worker_module, MetarScraper.Worker},
+     {:worker_module, MetarService.Worker},
      {:size, 5},
      {:max_overflow, 2}]
   end
