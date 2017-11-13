@@ -10,11 +10,11 @@ use Mix.Config
 
 # You can configure your application as:
 #
-#     config :metar_scraper, key: :value
+#     config :metar_service, key: :value
 #
 # and access this configuration in your application as:
 #
-#     Application.get_env(:metar_scraper, :key)
+#     Application.get_env(:metar_service, :key)
 #
 # You can also configure a 3rd-party app:
 #

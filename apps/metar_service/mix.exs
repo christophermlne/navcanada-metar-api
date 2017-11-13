@@ -1,9 +1,9 @@
-defmodule MetarScraper.Mixfile do
+defmodule MetarService.Mixfile do
   use Mix.Project
 
   def project do
     [
-      app: :metar_scraper,
+      app: :metar_service,
       version: "0.1.0",
       elixir: "~> 1.5",
       start_permanent: Mix.env == :prod,
@@ -15,7 +15,7 @@ defmodule MetarScraper.Mixfile do
   def application do
     [
       extra_applications: [:logger, :poolboy, :httpoison],
-      mod: {MetarScraper.Application, []}
+      mod: {MetarService.Application, []}
     ]
   end
 

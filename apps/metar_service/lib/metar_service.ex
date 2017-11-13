@@ -1,5 +1,5 @@
-defmodule MetarScraper do
-  alias MetarScraper.Server
+defmodule MetarService do
+  alias MetarService.Server
 
   defdelegate get(pid, station), to: Server
 

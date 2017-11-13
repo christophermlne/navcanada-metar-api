@@ -1,6 +1,6 @@
-defmodule MetarScraper.Worker do
+defmodule MetarService.Worker do
   use GenServer
-  alias MetarScraper.{Station,Region}
+  alias MetarService.{Station,Region}
 
   ##############
   # Client API #

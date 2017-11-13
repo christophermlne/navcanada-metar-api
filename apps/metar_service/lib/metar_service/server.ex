@@ -1,9 +1,9 @@
-defmodule MetarScraper.Server do
+defmodule MetarService.Server do
   use GenServer
 
-  alias MetarScraper.{Worker,Region}
+  alias MetarService.{Worker,Region}
 
-  @refresh_interval 1000 * 60 * 10 # 10 minutes
+  @refresh_interval 1000 * 60 * 10 * 6 # 1 hour
 
   ##############
   # Client API #
@@ -47,6 +47,7 @@ defmodule MetarScraper.Server do
   ####################
 
   defp update_data() do
+    # TODO update data instead of just replacing it (accumulate history)
     %{ retrieved_at: timestamp(), data: get_data_for_regions()}
   end
 
