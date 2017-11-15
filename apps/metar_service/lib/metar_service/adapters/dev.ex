@@ -1,12 +1,18 @@
 defmodule MetarService.Adapters.Dev do
   def get(station) do
-    case HTTPoison.get(url(station)) do
-      {:ok, %{ status_code: 200, body: body}} ->
-        body
-      {:error, %{ reason: reason }} ->
-        {:error, reason}
-      _ -> {:error, "Unknown error"}
-    end
+    {:ok, file} = Path.expand('./sample_data.xml') |> Path.absname|> File.open([:read])
+
+    IO.read(file, :all)
+
+
+    # case HTTPoison.get(url(station)) do
+    #   {:ok, %{ status_code: 200, body: body}} ->
+    #     Path.expand('./sample_data.xml') |> Path.absname |> File.write(body, [:write])
+    #     body
+    #   {:error, %{ reason: reason }} ->
+    #     {:error, reason}
+    #   _ -> {:error, "Unknown error"}
+    # end
   end
 
   def url(station), do:
