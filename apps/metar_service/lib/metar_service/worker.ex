@@ -2,6 +2,8 @@ defmodule MetarService.Worker do
   use GenServer
   alias MetarService.{Station,Region}
 
+  @adapter Application.get_env(:metar_service, :metar_data_adapter)
+
   ##############
   # Client API #
   ##############
@@ -32,10 +34,10 @@ defmodule MetarService.Worker do
     {:reply, :ok, %{}}
 
   def handle_call({:fetch_station, station}, {_from, _ref}, state), do:
-    {:reply, metar_taf_for(station), state}
+    {:reply, metar_for(station), state}
 
   def handle_call({:fetch_region, region}, {_from, _ref}, state), do:
-    {:reply, metar_taf_for(Region.stations_for(region)), state}
+    {:reply, metar_for(Region.stations_for(region)), state}
 
   def handle_cast(:stop, state), do:
     {:stop, :normal, state}
@@ -44,21 +46,14 @@ defmodule MetarService.Worker do
   # Helper Functions #
   ####################
 
-  defp metar_taf_for(stations), do:
-    {:ok, stations |> scrape |> transform_xml} # stations: a string of station ids separated by a space
+  defp metar_for(stations), do:
+    {:ok, stations |> scrape |> transform_xml}
 
   defp scrape(station) when is_list(station), do:
     Enum.join(station, ",") |> scrape
 
-  defp scrape(station) when is_binary(station) do
-    case HTTPoison.get(url_for_metar(station)) do
-      {:ok, %{ status_code: 200, body: body}} ->
-        body
-      {:error, %{ reason: reason }} ->
-        {:error, reason}
-      _ -> {:error, "Unknown error"}
-    end
-  end
+  defp scrape(station) when is_binary(station), do:
+    @adapter.get(station)
 
   defp transform_xml(xml_doc) do
     import SweetXml
@@ -93,9 +88,6 @@ defmodule MetarService.Worker do
             }
          end)
   end
-
-  defp url_for_metar(station), do:
-    "https://aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&stationString=#{station}&hoursBeforeNow=4"
 
   def terminate(reason, state) do
     IO.puts "server terminated for #{inspect reason}"
