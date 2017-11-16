@@ -4,7 +4,7 @@ defmodule Api.PageController do
   def index(conn, %{ "station" => station_id }) do
     import MetarService
 
-    case get(pid(), station_id) do
+    case get(station_id) do
       {:ok, %{ data: %{ reports: reports}, retrieved_at: retrieved_at }} ->
         render conn, "index.html", station_id: station_id, report: reports, error: nil, retrieved_at: retrieved_at
       {:error, msg} ->

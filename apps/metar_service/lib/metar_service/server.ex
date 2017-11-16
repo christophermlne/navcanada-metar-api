@@ -12,8 +12,8 @@ defmodule MetarService.Server do
   def start_link(), do:
     GenServer.start_link(__MODULE__, :ok, [name: __MODULE__])
 
-  def get(pid, station), do:
-    GenServer.call(pid, {:get, station})
+  def get(station), do:
+    GenServer.call(__MODULE__, {:get, station})
 
   ####################
   # Server Callbacks #
