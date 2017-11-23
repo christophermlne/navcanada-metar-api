@@ -17,6 +17,9 @@ defmodule MetarService.Worker do
   def get_metars_for_region(pid, region), do:
     GenServer.call(pid, {:fetch_region, region})
 
+  def get_tafs_for_station(pid, station), do:
+    GenServer.call(pid, {:fetch_tafs, station})
+
   def clear_cache(pid), do:
     GenServer.call(pid, {:clear_cache})
 
@@ -39,6 +42,9 @@ defmodule MetarService.Worker do
   def handle_call({:fetch_region, region}, {_from, _ref}, state), do:
     {:reply, metar_for(Region.stations_for(region)), state}
 
+  def handle_call({:fetch_tafs, station}, {_from, _ref}, state), do:
+    {:reply, taf_for(station), state}
+
   def handle_cast(:stop, state), do:
     {:stop, :normal, state}
 
@@ -46,16 +52,28 @@ defmodule MetarService.Worker do
   # Helper Functions #
   ####################
 
+  defp taf_for(stations), do:
+    {:ok, stations |> scrape(:taf) |> extract_tafs_from_xml}
+
   defp metar_for(stations), do:
-    {:ok, stations |> scrape |> transform_xml}
+    {:ok, stations |> scrape(:metar) |> extract_metars_from_xml}
 
-  defp scrape(station) when is_list(station), do:
-    Enum.join(station, ",") |> scrape
+  defp scrape(station, request_type) when is_list(station), do:
+    Enum.join(station, ",") |> scrape(request_type)
 
-  defp scrape(station) when is_binary(station), do:
-    @adapter.get(station)
+  defp scrape(station, request_type) when is_binary(station), do:
+    @adapter.get(station, request_type)
 
-  defp transform_xml(xml_doc) do
+  defp extract_tafs_from_xml(xml_doc) do
+    import SweetXml
+    xml_doc
+    |> xpath(~x"//TAF"l,
+       station_id: ~x"./station_id/text()",
+       raw_taf:   ~x"./raw_text/text()")
+    |> Enum.group_by(&(&1.station_id), &(&1.raw_taf))
+  end
+
+  defp extract_metars_from_xml(xml_doc) do
     import SweetXml
     xml_doc
     |> xpath(~x"//METAR"l,

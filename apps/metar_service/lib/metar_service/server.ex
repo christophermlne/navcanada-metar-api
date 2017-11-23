@@ -48,26 +48,59 @@ defmodule MetarService.Server do
 
   defp update_data() do
     # TODO update data instead of just replacing it (accumulate history)
-    %{ retrieved_at: timestamp(), data: get_data_for_regions()}
+    %{ retrieved_at: timestamp(),
+      data: %{
+        metar: get_metar_data_for_regions(),
+        taf: get_taf_data()
+      }
+    }
   end
 
-  defp get_data_for_regions() do
+  defp get_tafs_asynchronously() do
+    Task.async(fn ->
+       :poolboy.transaction(:scraper_worker_pool, fn (pid) ->
+         case Worker.get_tafs_for_station(pid, "CY") do
+           {:ok, result} -> result
+         end
+       end, 10000)
+    end)
+  end
+
+  defp get_metars_asynchronously(region) do
+    Task.async(fn ->
+     :poolboy.transaction(:scraper_worker_pool, fn (pid) ->
+       case Worker.get_metars_for_region(pid, region) do
+         {:ok, result} -> result
+       end
+     end, 10000) end)
+  end
+
+  defp get_taf_data() do
+    get_tafs_asynchronously()
+    |> Task.await
+  end
+
+  defp get_metar_data_for_regions() do
     Region.names()
-    |> Enum.map(&Task.async(fn ->
-         :poolboy.transaction(:scraper_worker_pool, fn (pid) ->
-           case Worker.get_metars_for_region(pid, &1) do
-             {:ok, result} -> result
-           end
-         end, 10000)
-       end))
+    |> Enum.map(&get_metars_asynchronously(&1))
     |> Enum.map(&Task.await/1)
     |> Enum.reduce([], fn(x, acc) -> x ++ acc end) # TODO adjust worker response so this can be removed
   end
 
+
   defp get_station_report(station, data) do
-    case data[:data] |> Enum.find(&(Map.get(&1, :station) == station)) do
-      nil ->    {:error, "Station does not exist or report not available."}
-      report -> {:ok, %{retrieved_at: Map.get(data, :retrieved_at), data: report}}
+    case data[:data][:metar] |> Enum.find(&(Map.get(&1, :station) == station)) do
+      nil ->
+        {:error, "Station does not exist or report not available."}
+      report ->
+        {:ok,
+          %{retrieved_at: Map.get(data, :retrieved_at),
+            data:
+            %{metar: report,
+              taf: Map.get(data[:data][:taf], String.to_charlist(station))
+              }
+           }
+         }
     end
   end
 

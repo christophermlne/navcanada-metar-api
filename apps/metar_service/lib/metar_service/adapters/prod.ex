@@ -1,6 +1,11 @@
 defmodule MetarService.Adapters.Prod do
-  def get(station) do
-    case HTTPoison.get(url(station)) do
+  @base_url "https://aviationweather.gov/adds/dataserver_current/httpparam?requestType=retrieve&format=xml&"
+
+  def get(stations, :metar), do: metar_url(stations) |> get
+  def get(stations, :taf),   do: taf_url(stations) |> get
+
+  def get(url) do
+    case HTTPoison.get(url) do
       {:ok, %{ status_code: 200, body: body}} ->
         body
       {:error, %{ reason: reason }} ->
@@ -9,6 +14,9 @@ defmodule MetarService.Adapters.Prod do
     end
   end
 
-  def url(station), do:
-    "https://aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&stationString=#{station}&hoursBeforeNow=4"
+  defp metar_url(stations), do:
+    @base_url <> "stationString=#{stations}&hoursBeforeNow=4&dataSource=metars"
+
+  defp taf_url(stations), do:
+    @base_url <> "stationString=#{stations}&hoursBeforeNow=1&timeType=valid&mostRecentForEachStation=constraint&dataSource=tafs"
 end

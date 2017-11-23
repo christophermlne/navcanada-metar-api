@@ -23,5 +23,8 @@
     <%= for key <- @report.history do %>
       <%= key %><br>
     <% end %>
+
+    <h3>TAF</h3>
+    <%= @taf %><br>
   <%= end %>
 <%= end %>
