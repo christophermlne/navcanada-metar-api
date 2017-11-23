@@ -13,7 +13,7 @@
 
     <%= if @retrieved_at do %>
       <%= @retrieved_at %>
-    <%= end %>
+    <% end %>
 
     <h3>Current</h3>
     <%= @report.current %><br>
@@ -26,5 +26,5 @@
 
     <h3>TAF</h3>
     <%= @taf %><br>
-  <%= end %>
+  <% end %>
 <%= end %>
