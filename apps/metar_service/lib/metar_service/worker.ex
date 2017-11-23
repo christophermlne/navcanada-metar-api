@@ -2,6 +2,8 @@ defmodule MetarService.Worker do
   use GenServer
   alias MetarService.{Station,Region}
 
+  @adapter Application.get_env(:metar_service, :metar_data_adapter)
+
   ##############
   # Client API #
   ##############
@@ -14,6 +16,9 @@ defmodule MetarService.Worker do
 
   def get_metars_for_region(pid, region), do:
     GenServer.call(pid, {:fetch_region, region})
+
+  def get_tafs_for_station(pid, station), do:
+    GenServer.call(pid, {:fetch_tafs, station})
 
   def clear_cache(pid), do:
     GenServer.call(pid, {:clear_cache})
@@ -32,10 +37,13 @@ defmodule MetarService.Worker do
     {:reply, :ok, %{}}
 
   def handle_call({:fetch_station, station}, {_from, _ref}, state), do:
-    {:reply, metar_taf_for(station), state}
+    {:reply, metar_for(station), state}
 
   def handle_call({:fetch_region, region}, {_from, _ref}, state), do:
-    {:reply, metar_taf_for(Region.stations_for(region)), state}
+    {:reply, metar_for(Region.stations_for(region)), state}
+
+  def handle_call({:fetch_tafs, station}, {_from, _ref}, state), do:
+    {:reply, taf_for(station), state}
 
   def handle_cast(:stop, state), do:
     {:stop, :normal, state}
@@ -44,23 +52,28 @@ defmodule MetarService.Worker do
   # Helper Functions #
   ####################
 
-  defp metar_taf_for(stations), do:
-    {:ok, stations |> scrape |> transform_xml} # stations: a string of station ids separated by a space
+  defp taf_for(stations), do:
+    {:ok, stations |> scrape(:taf) |> extract_tafs_from_xml}
 
-  defp scrape(station) when is_list(station), do:
-    Enum.join(station, ",") |> scrape
+  defp metar_for(stations), do:
+    {:ok, stations |> scrape(:metar) |> extract_metars_from_xml}
 
-  defp scrape(station) when is_binary(station) do
-    case HTTPoison.get(url_for_metar(station)) do
-      {:ok, %{ status_code: 200, body: body}} ->
-        body
-      {:error, %{ reason: reason }} ->
-        {:error, reason}
-      _ -> {:error, "Unknown error"}
-    end
+  defp scrape(station, request_type) when is_list(station), do:
+    Enum.join(station, ",") |> scrape(request_type)
+
+  defp scrape(station, request_type) when is_binary(station), do:
+    @adapter.get(station, request_type)
+
+  defp extract_tafs_from_xml(xml_doc) do
+    import SweetXml
+    xml_doc
+    |> xpath(~x"//TAF"l,
+       station_id: ~x"./station_id/text()",
+       raw_taf:   ~x"./raw_text/text()")
+    |> Enum.group_by(&(&1.station_id), &(&1.raw_taf))
   end
 
-  defp transform_xml(xml_doc) do
+  defp extract_metars_from_xml(xml_doc) do
     import SweetXml
     xml_doc
     |> xpath(~x"//METAR"l,
@@ -93,9 +106,6 @@ defmodule MetarService.Worker do
             }
          end)
   end
-
-  defp url_for_metar(station), do:
-    "https://aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&stationString=#{station}&hoursBeforeNow=4"
 
   def terminate(reason, state) do
     IO.puts "server terminated for #{inspect reason}"

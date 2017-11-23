@@ -13,6 +13,12 @@ defmodule MetarService.Region do
     Map.keys(@regions)
   end
 
+  def all do
+    Map.keys(@regions)
+    |> Enum.map(&Map.get(@regions, &1))
+    |> Enum.reduce([], fn(x, acc) -> x ++ acc end)
+  end
+
   def stations_for(region) do
     Map.get(@regions, region)
   end
