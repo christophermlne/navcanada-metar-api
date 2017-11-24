@@ -6,7 +6,7 @@ defmodule MetarService.Station do
 
   def valid_id(station) do
     case Region.all() |> Enum.find(&(station == &1)) do
-      nil -> {:error, "Not a valid station name."}
+      nil -> {:error, "Not a valid station id."}
       station -> {:ok, station}
     end
   end
