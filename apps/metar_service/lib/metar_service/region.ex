@@ -9,17 +9,14 @@ defmodule MetarService.Region do
     yukon_and_northwest: ~w(CYKD CWKP CYXQ CWKM CYDB CYCO CYCB CYUJ CZCP CWLI CWPX CYLK CYVL CYMA CWXR CYVQ CYDA CYOC CWON CYPC CYWJ CYSY CYOA CYUA CZFA CWVH CYGH CYZW CYJF CYUB CZFM CZFN CYFR CYHI CYFS CYQH CYSM CYWE CYRA CYXY CWIL CYWY CYHY CYZF CYEV)
   }
 
-  def names do
+  def names, do:
     Map.keys(@regions)
-  end
 
-  def all do
+  def all, do:
     Map.keys(@regions)
     |> Enum.map(&Map.get(@regions, &1))
     |> Enum.reduce([], fn(x, acc) -> x ++ acc end)
-  end
 
-  def stations_for(region) do
+  def stations_for(region), do:
     Map.get(@regions, region)
-  end
 end
