@@ -1,7 +1,7 @@
 defmodule MetarService.Server do
   use GenServer
 
-  alias MetarService.{Worker,Region}
+  alias MetarService.{Worker,Region,Station}
 
   @refresh_interval 1000 * 60 * 10 * 6 # 1 hour
 
@@ -87,24 +87,31 @@ defmodule MetarService.Server do
     |> Enum.reduce([], fn(x, acc) -> x ++ acc end) # TODO adjust worker response so this can be removed
   end
 
-
   defp get_station_report(station, data) do
-    case data[:data][:metar] |> Enum.find(&(Map.get(&1, :station) == station)) do
-      nil ->
-        {:error, "Station does not exist or report not available."}
-      report ->
-        {:ok,
-          %{retrieved_at: Map.get(data, :retrieved_at),
-            data:
-            %{metar: report,
-              taf: Map.get(data[:data][:taf], String.to_charlist(station))
-              }
-           }
-         }
+    with {:ok, valid_station} <- Station.valid_id(station),
+         {:ok, metar} <- get_metar_from_data(valid_station, data),
+         {:ok, taf}   <- maybe_get_taf_from_data(valid_station, data)
+    do
+      {:ok, %{data: %{metar: metar, taf: taf},
+              retrieved_at: Map.get(data, :retrieved_at)}}
+    else
+      {:error, msg} -> {:error, msg}
     end
   end
 
-  defp timestamp do
-    DateTime.utc_now |> DateTime.to_iso8601
+  defp get_metar_from_data(station, data) do
+    case data[:data][:metar] |> Enum.find(&(Map.get(&1, :station) == station)) do
+      nil -> {:error, "Report not available."}
+      metar-> {:ok, metar}
+    end
   end
+
+  defp maybe_get_taf_from_data(station, data) do
+    case Map.get(data[:data][:taf], String.to_charlist(station)) do
+      nil -> {:ok, "TAF not available for this station."}
+      taf -> {:ok, taf}
+    end
+  end
+
+  defp timestamp, do: DateTime.utc_now |> DateTime.to_iso8601
 end
