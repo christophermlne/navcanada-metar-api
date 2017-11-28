@@ -36,14 +36,15 @@ defmodule MetarService.Worker do
   def handle_call({:clear_cache}, {_from, _ref}, _state), do:
     {:reply, :ok, %{}}
 
-  def handle_call({:fetch_station, station}, {_from, _ref}, state), do:
-    {:reply, metar_for(station), state}
+  def handle_call({:fetch_region, region}, {_from, _ref}, _state) do
+    data = fetch(Region.stations_for(region), :metar, &extract_metars_from_xml/1)
+    {:reply, data, %{}}
+  end
 
-  def handle_call({:fetch_region, region}, {_from, _ref}, state), do:
-    {:reply, metar_for(Region.stations_for(region)), state}
-
-  def handle_call({:fetch_tafs, station}, {_from, _ref}, state), do:
-    {:reply, taf_for(station), state}
+  def handle_call({:fetch_tafs, stations}, {_from, _ref}, _state) do
+    data = fetch(stations, :taf, &extract_tafs_from_xml/1)
+    {:reply, data, %{}}
+  end
 
   def handle_cast(:stop, state), do:
     {:stop, :normal, state}
@@ -52,17 +53,22 @@ defmodule MetarService.Worker do
   # Helper Functions #
   ####################
 
-  defp taf_for(stations), do:
-    {:ok, stations |> scrape(:taf) |> extract_tafs_from_xml}
+  defp fetch(stations, report_type, xml_parse_fun) do
+    case stations |> scrape(report_type) do
+      {:ok, xml} -> {:ok, xml_parse_fun.(xml)}
+      {:error, msg} -> {:error, msg}
+    end
+  end
 
-  defp metar_for(stations), do:
-    {:ok, stations |> scrape(:metar) |> extract_metars_from_xml}
+  defp scrape(stations, request_type) when is_list(stations), do:
+    Enum.join(stations, ",") |> scrape(request_type)
 
-  defp scrape(station, request_type) when is_list(station), do:
-    Enum.join(station, ",") |> scrape(request_type)
-
-  defp scrape(station, request_type) when is_binary(station), do:
-    @adapter.get(station, request_type)
+  defp scrape(stations, request_type) when is_binary(stations) do
+    case @adapter.get(stations, request_type) do
+      {:ok, response} -> {:ok, response}
+      {:error, msg} -> {:error, msg}
+    end
+  end
 
   defp extract_tafs_from_xml(xml_doc) do
     import SweetXml

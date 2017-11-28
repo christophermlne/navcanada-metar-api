@@ -5,6 +5,6 @@ defmodule MetarService.Adapters.Dev do
 
   defp get(path) do
     {:ok, file} = Path.expand(path) |> Path.absname|> File.open([:read])
-    IO.read(file, :all)
+    {:ok, IO.read(file, :all)}
   end
 end
