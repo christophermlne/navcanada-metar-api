@@ -60,11 +60,11 @@ defmodule MetarService.Worker do
     end
   end
 
-  defp scrape(stations, request_type) when is_list(stations), do:
-    Enum.join(stations, ",") |> scrape(request_type)
+  defp scrape(stations, report_type) when is_list(stations), do:
+    Enum.join(stations, ",") |> scrape(report_type)
 
-  defp scrape(stations, request_type) when is_binary(stations) do
-    case @adapter.get(stations, request_type) do
+  defp scrape(stations, report_type) when is_binary(stations) do
+    case @adapter.get(stations, report_type) do
       {:ok, response} -> {:ok, response}
       {:error, msg} -> {:error, msg}
     end
