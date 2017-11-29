@@ -53,19 +53,12 @@ defmodule MetarService.Worker do
   # Helper Functions #
   ####################
 
-  defp fetch(stations, report_type, xml_parse_fun) do
-    case stations |> scrape(report_type) do
-      {:ok, xml} -> {:ok, xml_parse_fun.(xml)}
-      {:error, msg} -> {:error, msg}
-    end
-  end
+  defp fetch(stations, report_type, parse_fun) when is_list(stations), do:
+    Enum.join(stations, ",") |> fetch(report_type, parse_fun)
 
-  defp scrape(stations, report_type) when is_list(stations), do:
-    Enum.join(stations, ",") |> scrape(report_type)
-
-  defp scrape(stations, report_type) when is_binary(stations) do
+  defp fetch(stations, report_type, parse_fun) when is_binary(stations) do
     case @adapter.get(stations, report_type) do
-      {:ok, response} -> {:ok, response}
+      {:ok, response} -> {:ok, parse_fun.(response)}
       {:error, msg} -> {:error, msg}
     end
   end
