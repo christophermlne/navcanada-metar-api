@@ -7,10 +7,9 @@ defmodule MetarService.Adapters.Prod do
   def get(url) do
     case HTTPoison.get(url) do
       {:ok, %{ status_code: 200, body: body}} ->
-        body
+        {:ok, body}
       {:error, %{ reason: reason }} ->
         {:error, reason}
-      _ -> {:error, "Unknown error"}
     end
   end
 
