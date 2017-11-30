@@ -9,8 +9,8 @@ defmodule MetarService.Server do
   alias MetarService.Station
 
   def get(station) do
-    # TODO update to read from ets table
-    data = MetarService.Coordinator.data()
+    data = :ets.lookup(:metar_data, :data)[:data]
+
     get_station_report(station, data)
   end
 

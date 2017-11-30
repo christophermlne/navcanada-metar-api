@@ -12,9 +12,6 @@ defmodule MetarService.Coordinator do
   def start_link(), do:
     GenServer.start_link(__MODULE__, :ok, [name: __MODULE__])
 
-  def data(), do:
-    GenServer.call(__MODULE__, :data)
-
   ####################
   # Server Callbacks #
   ####################
@@ -23,11 +20,9 @@ defmodule MetarService.Coordinator do
     # TODO move data into public read ets table and fire update asynchronously
     IO.puts "performing initial scrape"
     Process.send_after(self(), :refresh_data, @refresh_interval)
+    :ets.new(:metar_data, [:set, :protected, :named_table])
     {:ok, update_data()}
   end
-
-  def handle_call(:data, {_from, _ref}, state), do:
-    {:reply, state, state}
 
   def handle_info(:refresh_data, _state) do
     IO.puts "performing scheduled scrape"
@@ -35,24 +30,20 @@ defmodule MetarService.Coordinator do
     {:noreply, update_data()}
   end
 
-  def handle_info(:manually_refresh_data, _state) do
-    IO.puts "performing manual scrape"
-    {:noreply, update_data()}
-  end
-
-
   ####################
   # Helper Functions #
   ####################
 
   defp update_data() do
     # TODO update data instead of just replacing it (accumulate history)
-    %{ retrieved_at: timestamp(),
+    data = %{ retrieved_at: timestamp(),
       data: %{
         metar: get_metar_data_for_regions(),
         taf: get_taf_data()
       }
     }
+    # NOTE insert will replace data, insert_new will update
+    :ets.insert(:metar_data, {:data, data})
   end
 
   defp get_tafs_asynchronously() do
