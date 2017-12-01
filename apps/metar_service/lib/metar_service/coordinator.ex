@@ -33,8 +33,19 @@ defmodule MetarService.Coordinator do
   ####################
 
   defp update_data() do
-    Store.put(:metar, get_metar_data_for_regions())
-    Store.put(:taf, get_taf_data())
+    metar_data = get_metar_data_for_regions()
+    Store.put(:metar, metar_data)
+    taf_data = get_taf_data()
+    Store.put(:taf, taf_data)
+
+    Enum.each(metar_data, fn (metar) ->
+      Store.put(:update_individual_metar, metar.station, metar)
+    end)
+
+    Enum.each(taf_data, fn (taf) ->
+      {station, [forecast]} = taf
+      Store.put(:update_individual_taf, List.to_string(station), List.to_string(forecast))
+    end)
 
     IO.puts "#{__MODULE__}: Done"
   end

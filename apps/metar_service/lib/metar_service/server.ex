@@ -20,23 +20,41 @@ defmodule MetarService.Server do
     end
   end
 
-  defp get_metar_from_data(station) do
-    data = :ets.lookup(:metar_data, :data)[:data]
-
-    case data |> Enum.find(&(Map.get(&1, :station) == station)) do
+  # TODO don't use tl to destructure the tuple
+  defp get_metar_from_data(station_id) do
+    case :ets.lookup(:metar_data, station_id) do
       nil -> {:error, "Report not available."}
-      metar-> {:ok, metar}
+      [metar]->
+        {_, metar} = metar
+        {:ok, metar}
     end
   end
 
-  defp maybe_get_taf_from_data(station) do
-    data = :ets.lookup(:taf_data, :data)[:data]
-
-    case Map.get(data, String.to_charlist(station)) do
+  defp maybe_get_taf_from_data(station_id) do
+    case :ets.lookup(:taf_data, station_id) do
       nil -> {:ok, "TAF not available for this station."}
-      taf -> {:ok, taf}
+      taf ->
+        [{_, taf}] = taf
+        {:ok, taf}
     end
   end
+  # defp get_metar_from_data(station) do
+  #   data = :ets.lookup(:metar_data, :data)[:data]
+  #
+  #   case data |> Enum.find(&(Map.get(&1, :station) == station)) do
+  #     nil -> {:error, "Report not available."}
+  #     metar-> {:ok, metar}
+  #   end
+  # end
 
+  # defp maybe_get_taf_from_data(station) do
+  #   data = :ets.lookup(:taf_data, :data)[:data]
+  #
+  #   case Map.get(data, String.to_charlist(station)) do
+  #     nil -> {:ok, "TAF not available for this station."}
+  #     taf -> {:ok, taf}
+  #   end
+  # end
+  #
   defp timestamp, do: DateTime.utc_now |> DateTime.to_iso8601
 end
