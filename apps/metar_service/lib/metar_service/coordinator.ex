@@ -1,7 +1,7 @@
 defmodule MetarService.Coordinator do
   use GenServer
 
-  alias MetarService.{Worker,Region,Station,Store}
+  alias MetarService.{Worker,Region,Store}
 
   @refresh_interval 1000 * 60 * 10 * 6 # 1 hour
 
@@ -37,12 +37,12 @@ defmodule MetarService.Coordinator do
     taf_data = get_taf_data()
 
     Enum.each(metar_data, fn (metar) ->
-      Store.put(:update_individual_metar, metar.station, metar)
+      Store.put(:metar, metar.station, metar)
     end)
 
     Enum.each(taf_data, fn (taf) ->
       {station, [forecast]} = taf
-      Store.put(:update_individual_taf, List.to_string(station), List.to_string(forecast))
+      Store.put(:taf, List.to_string(station), List.to_string(forecast))
     end)
 
     IO.puts "#{__MODULE__}: Done"
@@ -78,6 +78,4 @@ defmodule MetarService.Coordinator do
     |> Enum.map(&Task.await/1)
     |> Enum.reduce([], fn(x, acc) -> x ++ acc end) # TODO adjust worker response so this can be removed
   end
-
-  defp timestamp, do: DateTime.utc_now |> DateTime.to_iso8601
 end
