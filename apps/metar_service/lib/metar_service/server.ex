@@ -4,7 +4,7 @@
 # 3) Coordinator should manage the workers and update the Store or Repo
 ##########################
 # STEP 1) move server state into a Store GenServer and update Server methods to retrieve data from the Store
-# STEP 2) move worker management functions into a WorkerCoordinator class
+# *DONE* STEP 2) move worker management functions into a WorkerCoordinator class
 defmodule MetarService.Server do
   alias MetarService.Station
 

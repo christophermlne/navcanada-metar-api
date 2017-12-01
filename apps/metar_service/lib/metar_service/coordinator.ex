@@ -1,7 +1,7 @@
 defmodule MetarService.Coordinator do
   use GenServer
 
-  alias MetarService.{Worker,Region,Station}
+  alias MetarService.{Worker,Region,Station,Store}
 
   @refresh_interval 1000 * 60 * 10 * 6 # 1 hour
 
@@ -17,16 +17,13 @@ defmodule MetarService.Coordinator do
   ####################
 
   def init(:ok) do
-    # TODO move data into public read ets table and fire update asynchronously
-    IO.puts "performing initial scrape"
+    IO.puts "#{__MODULE__}: Populating data..."
     Process.send_after(self(), :refresh_data, @refresh_interval)
-    :ets.new(:taf_data, [:set, :protected, :named_table])
-    :ets.new(:metar_data, [:set, :protected, :named_table])
     {:ok, update_data()}
   end
 
   def handle_info(:refresh_data, _state) do
-    IO.puts "performing scheduled scrape"
+    IO.puts "#{__MODULE__}: Refreshing data..."
     Process.send_after(self(), :refresh_data, @refresh_interval)
     {:noreply, update_data()}
   end
@@ -36,11 +33,10 @@ defmodule MetarService.Coordinator do
   ####################
 
   defp update_data() do
-    # NOTE insert will replace data, insert_new will update
-    :ets.insert(:taf_data,    {:data, get_taf_data()})
-    :ets.insert(:taf_data,    {:retrieved_at, timestamp()})
-    :ets.insert(:metar_data,  {:data, get_metar_data_for_regions()})
-    :ets.insert(:metar_data,  {:retrieved_at, timestamp()})
+    Store.put(:metar, get_metar_data_for_regions())
+    Store.put(:taf, get_taf_data())
+
+    IO.puts "#{__MODULE__}: Done"
   end
 
   defp get_tafs_asynchronously() do
