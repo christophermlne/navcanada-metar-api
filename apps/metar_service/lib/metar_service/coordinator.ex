@@ -20,6 +20,7 @@ defmodule MetarService.Coordinator do
     # TODO move data into public read ets table and fire update asynchronously
     IO.puts "performing initial scrape"
     Process.send_after(self(), :refresh_data, @refresh_interval)
+    :ets.new(:taf_data, [:set, :protected, :named_table])
     :ets.new(:metar_data, [:set, :protected, :named_table])
     {:ok, update_data()}
   end
@@ -35,15 +36,11 @@ defmodule MetarService.Coordinator do
   ####################
 
   defp update_data() do
-    # TODO update data instead of just replacing it (accumulate history)
-    data = %{ retrieved_at: timestamp(),
-      data: %{
-        metar: get_metar_data_for_regions(),
-        taf: get_taf_data()
-      }
-    }
     # NOTE insert will replace data, insert_new will update
-    :ets.insert(:metar_data, {:data, data})
+    :ets.insert(:taf_data,    {:data, get_taf_data()})
+    :ets.insert(:taf_data,    {:retrieved_at, timestamp()})
+    :ets.insert(:metar_data,  {:data, get_metar_data_for_regions()})
+    :ets.insert(:metar_data,  {:retrieved_at, timestamp()})
   end
 
   defp get_tafs_asynchronously() do

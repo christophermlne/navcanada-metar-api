@@ -9,32 +9,30 @@ defmodule MetarService.Server do
   alias MetarService.Station
 
   def get(station) do
-    data = :ets.lookup(:metar_data, :data)[:data]
-
-    get_station_report(station, data)
-  end
-
-  defp get_station_report(station, data) do
-    with {:ok, valid_station} <- Station.valid_id(station),
-         {:ok, metar} <- get_metar_from_data(valid_station, data),
-         {:ok, taf}   <- maybe_get_taf_from_data(valid_station, data)
+    with {:ok, valid_station} <- Station.valid_id?(station),
+         {:ok, metar} <- get_metar_from_data(valid_station),
+         {:ok, taf}   <- maybe_get_taf_from_data(valid_station)
     do
       {:ok, %{data: %{metar: metar, taf: taf},
-              retrieved_at: Map.get(data, :retrieved_at)}}
+          retrieved_at: tl(:ets.lookup(:metar_data, :retrieved_at))}}
     else
       {:error, msg} -> {:error, msg}
     end
   end
 
-  defp get_metar_from_data(station, data) do
-    case data[:data][:metar] |> Enum.find(&(Map.get(&1, :station) == station)) do
+  defp get_metar_from_data(station) do
+    data = :ets.lookup(:metar_data, :data)[:data]
+
+    case data |> Enum.find(&(Map.get(&1, :station) == station)) do
       nil -> {:error, "Report not available."}
       metar-> {:ok, metar}
     end
   end
 
-  defp maybe_get_taf_from_data(station, data) do
-    case Map.get(data[:data][:taf], String.to_charlist(station)) do
+  defp maybe_get_taf_from_data(station) do
+    data = :ets.lookup(:taf_data, :data)[:data]
+
+    case Map.get(data, String.to_charlist(station)) do
       nil -> {:ok, "TAF not available for this station."}
       taf -> {:ok, taf}
     end
