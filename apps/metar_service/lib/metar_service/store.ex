@@ -8,14 +8,8 @@ defmodule MetarService.Store do
   def start_link(), do:
     GenServer.start_link(__MODULE__, :ok, [name: __MODULE__])
 
-  def put(:taf, data), do:
-    GenServer.call(__MODULE__, {:update_taf, data})
-
   def put(:update_individual_taf, station_id, forecast), do:
     GenServer.call(__MODULE__, {:update_individual_taf, station_id, forecast})
-
-  def put(:metar, data), do:
-    GenServer.call(__MODULE__, {:update_metar, data})
 
   def put(:update_individual_metar, station_id, reports), do:
     GenServer.call(__MODULE__, {:update_individual_metar, station_id, reports})
@@ -31,11 +25,6 @@ defmodule MetarService.Store do
   end
 
   # NOTE :ets.insert will replace data, insert_new will update
-  def handle_call({:update_taf, data}, {_from, _ref}, _state) do
-    :ets.insert(:taf_data, {:data, data})
-    :ets.insert(:taf_data, {:retrieved_at, timestamp()})
-    {:reply, data, %{}}
-  end
 
   # updates an individual taf within the taf_data table
   def handle_call({:update_individual_taf, station_id, forecast}, {_from, _ref}, _state) do
@@ -47,12 +36,6 @@ defmodule MetarService.Store do
   def handle_call({:update_individual_metar, station_id, reports}, {_from, _ref}, _state) do
     metar = :ets.insert(:metar_data, {station_id, reports})
     {:reply, metar, %{}}
-  end
-
-  def handle_call({:update_metar, data}, {_from, _ref}, _state) do
-    :ets.insert(:metar_data,  {:data, data})
-    :ets.insert(:metar_data,  {:retrieved_at, timestamp()})
-    {:reply, data, %{}}
   end
 
   ####################

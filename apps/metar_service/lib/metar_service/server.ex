@@ -13,8 +13,9 @@ defmodule MetarService.Server do
          {:ok, metar} <- get_metar_from_data(valid_station),
          {:ok, taf}   <- maybe_get_taf_from_data(valid_station)
     do
+      #TODO fix timestamp
       {:ok, %{data: %{metar: metar, taf: taf},
-          retrieved_at: tl(:ets.lookup(:metar_data, :retrieved_at))}}
+          retrieved_at: timestamp()}}
     else
       {:error, msg} -> {:error, msg}
     end

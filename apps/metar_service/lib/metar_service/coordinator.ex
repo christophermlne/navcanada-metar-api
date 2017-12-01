@@ -34,9 +34,7 @@ defmodule MetarService.Coordinator do
 
   defp update_data() do
     metar_data = get_metar_data_for_regions()
-    Store.put(:metar, metar_data)
     taf_data = get_taf_data()
-    Store.put(:taf, taf_data)
 
     Enum.each(metar_data, fn (metar) ->
       Store.put(:update_individual_metar, metar.station, metar)
