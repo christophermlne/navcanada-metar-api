@@ -25,7 +25,8 @@ defmodule MetarService.Mixfile do
       {:mix_test_watch, "~> 0.3", only: :dev, runtime: false},
       {:poolboy, "~> 1.5"},
       {:httpoison, "~> 0.13"},
-      {:sweet_xml, "~> 0.6.5"}
+      {:sweet_xml, "~> 0.6.5"},
+      {:math, "~> 0.3.0"}
     ]
   end
 end
