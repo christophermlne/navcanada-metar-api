@@ -8,7 +8,8 @@ defmodule MetarService.Application do
 
     children = [
       :poolboy.child_spec(:scraper_worker_pool, poolboy_config()),
-      worker(MetarService.Server, []),
+      worker(MetarService.Store, []),
+      worker(MetarService.Coordinator, []),
     ]
 
     opts = [strategy: :one_for_one, name: MetarService.Supervisor]
