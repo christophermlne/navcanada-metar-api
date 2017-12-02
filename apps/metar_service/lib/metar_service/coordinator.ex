@@ -18,34 +18,48 @@ defmodule MetarService.Coordinator do
 
   def init(:ok) do
     IO.puts "#{__MODULE__}: Populating data..."
-    Process.send_after(self(), :refresh_data, @refresh_interval)
-    {:ok, update_data()}
+    Process.send_after(self(), :refresh_metar, @refresh_interval)
+    Process.send_after(self(), :refresh_taf,   @refresh_interval + 5000)
+    update_metar_data()
+    update_taf_data()
+    {:ok, %{}}
   end
 
-  def handle_info(:refresh_data, _state) do
-    IO.puts "#{__MODULE__}: Refreshing data..."
-    Process.send_after(self(), :refresh_data, @refresh_interval)
-    {:noreply, update_data()}
+  def handle_info(:refresh_metar, _state) do
+    IO.puts "#{__MODULE__}: Refreshing metar data..."
+    Process.send_after(self(), :refresh_metar, @refresh_interval)
+    {:noreply, update_metar_data()}
+  end
+
+  def handle_info(:refresh_taf, _state) do
+    IO.puts "#{__MODULE__}: Refreshing taf data..."
+    Process.send_after(self(), :refresh_taf, @refresh_interval)
+    {:noreply, update_taf_data()}
   end
 
   ####################
   # Helper Functions #
   ####################
 
-  defp update_data() do
-    metar_data = get_metar_data_for_regions()
+  defp update_taf_data() do
     taf_data = get_taf_data()
-
-    Enum.each(metar_data, fn (metar) ->
-      Store.put(:metar, metar.station, metar)
-    end)
 
     Enum.each(taf_data, fn (taf) ->
       {station, [forecast]} = taf
       Store.put(:taf, List.to_string(station), List.to_string(forecast))
     end)
 
-    IO.puts "#{__MODULE__}: Done"
+    IO.puts "#{__MODULE__}: Done updating Taf"
+  end
+
+  defp update_metar_data() do
+    metar_data = get_metar_data_for_regions()
+
+    Enum.each(metar_data, fn (metar) ->
+      Store.put(:metar, metar.station, metar)
+    end)
+
+    IO.puts "#{__MODULE__}: Done updating Metar"
   end
 
   defp get_tafs_asynchronously() do
