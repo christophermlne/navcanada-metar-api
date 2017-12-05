@@ -26,5 +26,10 @@
 
     <h3>TAF</h3>
     <%= @taf %><br>
+
+    <h3>Nearby Stations (within 100km)</h3>
+    <%= for station <- @nearby_stations do %>
+      <a href="/metar?station=<%= station %>"><%= station %></a>
+    <% end %>
   <% end %>
 <%= end %>

@@ -18,23 +18,26 @@ defmodule MetarService.Coordinator do
 
   def init(:ok) do
     IO.puts "#{__MODULE__}: Populating data..."
-    Process.send_after(self(), :refresh_metar, @refresh_interval)
-    Process.send_after(self(), :refresh_taf,   @refresh_interval + 5000)
-    update_metar_data()
-    update_taf_data()
-    {:ok, %{}}
+    Process.send_after(self(), :refresh_metar, 1)
+    Process.send_after(self(), :refresh_taf, 5001)
+    {:ok, %{ metar_last_run: :never, taf_last_run: :never, station_last_run: :never}}
   end
 
-  def handle_info(:refresh_metar, _state) do
+  def handle_info(:refresh_metar, state) do
     IO.puts "#{__MODULE__}: Refreshing metar data..."
     Process.send_after(self(), :refresh_metar, @refresh_interval)
-    {:noreply, update_metar_data()}
+    update_metar_data()
+    state = state |> Map.put(:metar_last_run, timestamp())
+    state = state |> Map.put(:station_last_run, timestamp())
+    {:noreply, state}
   end
 
-  def handle_info(:refresh_taf, _state) do
+  def handle_info(:refresh_taf, state) do
     IO.puts "#{__MODULE__}: Refreshing taf data..."
     Process.send_after(self(), :refresh_taf, @refresh_interval)
-    {:noreply, update_taf_data()}
+    update_taf_data()
+    state = state |> Map.put(:taf_last_run, timestamp())
+    {:noreply, state}
   end
 
   ####################
@@ -57,6 +60,7 @@ defmodule MetarService.Coordinator do
 
     Enum.each(metar_data, fn (metar) ->
       Store.put(:metar, metar.station, metar)
+      Store.put(:station, metar.station, metar)
     end)
 
     IO.puts "#{__MODULE__}: Done updating Metar"
@@ -92,4 +96,6 @@ defmodule MetarService.Coordinator do
     |> Enum.map(&Task.await/1)
     |> Enum.reduce([], fn(x, acc) -> x ++ acc end) # TODO adjust worker response so this can be removed
   end
+
+  defp timestamp, do: DateTime.utc_now |> DateTime.to_iso8601
 end

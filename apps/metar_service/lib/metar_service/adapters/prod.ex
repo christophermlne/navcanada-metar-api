@@ -2,7 +2,7 @@ defmodule MetarService.Adapters.Prod do
   @base_url "https://aviationweather.gov/adds/dataserver_current/httpparam?requestType=retrieve&format=xml&"
 
   def get(stations, :metar), do: metar_url(stations) |> get
-  def get(stations, :taf),   do: taf_url(stations) |> get
+  def get(stations, :taf),   do: taf_url(stations)   |> get
 
   def get(url) do
     case HTTPoison.get(url) do
