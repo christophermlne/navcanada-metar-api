@@ -1,5 +1,5 @@
 defmodule MetarService.Region do
- @regions %{
+  @regions %{
     arctic:              ~w(CYLT CWGZ CYAB CYGZ CWEU CYIO CYEU CYRB),
     atlantic:            ~w(CYBC CYFT CZBF CYMH CWKW CYQM CWYK CYYY CWCA CYDP CYCA CYNA CYYG CYPD CZUM CWSA CYDF CSB2 CYFC CST5 CYCX CWZZ CYQX CYSJ CYGP LFVP CYYR CYZV CYZX CYAY CYAW CYYT CYHZ CYSL CYGV CYJT CYGR CYQY CYLU CWTU CWWU CYWK CCX2 CYQI CYBX),
     ontario_quebec:      ~w(CYYW CYND CYAT CYOW CYLA CYPO CYBG CYWA CYTL CYPQ CYBN CYPL CYLD CYQB CYCK CYRL CYMT CYRJ CYHD CYUY CYXR CZSJ CZEM CYSK CYER CYZR CYGQ CYAM CYZE CYKL CYHM CYSC CYPH CYXL CYYU CYSN CYQK CYSB CYGK CYTQ CYKF CYTJ CYVP CYQT CYGW CYTS CYGL CYTZ CYAD CYKZ CYAH CYYZ CYLH CYOO CYXU CYTR CYSP CYRQ CYNM CYMU CYMX CYVO CYUL CYOY CYHU CWQG CYMO CYKQ CYQA CYXZ CZMD CYNC CYHH CYVV CYYB CYQG CYKP),
@@ -15,7 +15,7 @@ defmodule MetarService.Region do
   def all, do:
     Map.keys(@regions)
     |> Enum.map(&Map.get(@regions, &1))
-    |> Enum.reduce([], fn(x, acc) -> x ++ acc end)
+    |> Enum.reduce([], &(&1 ++ &2))
 
   def stations_for(region), do:
     Map.get(@regions, region)

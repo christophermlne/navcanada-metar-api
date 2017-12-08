@@ -2,13 +2,15 @@ defmodule Api.PageController do
   use Api.Web, :controller
 
   def index(conn, %{ "station" => station_id }) do
-    import MetarService
-
-    with {:ok, %{data: %{taf: taf, metar: %{reports: reports}}, retrieved_at: retrieved_at} } <- get(station_id),
-         {:ok, nearby_stations} <- stations_within(station_id)
-    do
+    case MetarService.get(station_id) do
+      {:ok,
+        %{taf: taf,
+          metar: %{reports: reports},
+          retrieved_at: retrieved_at,
+          nearby_stations: nearby_stations
+        }
+      } ->
         render conn, "index.html", station_id: station_id, report: reports, taf: taf, error: nil, retrieved_at: retrieved_at, nearby_stations: nearby_stations
-    else
       {:error, msg} ->
         render conn, "index.html", station_id: station_id, report: %{ history: [], currrent: ""}, taf: "", error: msg, retrieved_at: nil, nearby_stations: []
     end

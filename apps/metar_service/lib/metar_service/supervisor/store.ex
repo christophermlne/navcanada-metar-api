@@ -22,6 +22,13 @@ defmodule MetarService.Store do
     end
   end
 
+  def find(:station, station_id) do
+    case :ets.lookup(:station_data, station_id) do
+      [] -> {:error, "Station data not available."}
+      [{_, station}] -> {:ok, station}
+    end
+  end
+
   def put(:taf, station_id, forecast), do:
     GenServer.call(__MODULE__, {:put_taf, station_id, forecast})
 
