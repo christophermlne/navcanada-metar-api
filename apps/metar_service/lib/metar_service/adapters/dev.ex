@@ -4,7 +4,9 @@ defmodule MetarService.Adapters.Dev do
   def get(station, :taf),   do: get("./sample_data/taf.xml")
 
   defp get(path) do
-    {:ok, file} = Path.expand(path) |> Path.absname|> File.open([:read])
-    {:ok, IO.read(file, :all)}
+    case Path.expand(path) |> Path.absname|> File.open([:read]) do
+      {:ok, file} -> {:ok, IO.read(file, :all)}
+      {:error, msg} -> {:error, msg}
+    end
   end
 end

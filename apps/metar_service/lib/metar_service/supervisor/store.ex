@@ -22,35 +22,53 @@ defmodule MetarService.Store do
     end
   end
 
+  def find(:station, station_id) do
+    case :ets.lookup(:station_data, station_id) do
+      [] -> {:error, "Station data not available."}
+      [{_, station}] -> {:ok, station}
+    end
+  end
+
   def put(:taf, station_id, forecast), do:
     GenServer.call(__MODULE__, {:put_taf, station_id, forecast})
 
   def put(:metar, station_id, reports), do:
     GenServer.call(__MODULE__, {:put_metar, station_id, reports})
 
+  def put(:station, station_id, reports), do:
+    GenServer.call(__MODULE__, {:put_station, station_id, reports})
+
   ####################
   # Server Callbacks #
   ####################
 
   def init(:ok) do
-    :ets.new(:taf_data, [:set, :protected, :named_table])
-    :ets.new(:metar_data, [:set, :protected, :named_table])
+    for table_name <- [:taf_data, :metar_data, :station_data], do:
+      :ets.new(table_name, [:set, :protected, :named_table])
     {:ok, %{}}
   end
 
-  def handle_call({:put_taf, station_id, forecast}, {_from, _ref}, _state) do
+  def handle_call({:put_taf, station_id, forecast}, {_from, _ref}, state) do
     taf = :ets.insert(:taf_data, {station_id, forecast})
-    {:reply, taf, %{}}
+    {:reply, taf, state}
   end
 
-  def handle_call({:put_metar, station_id, reports}, {_from, _ref}, _state) do
+  def handle_call({:put_metar, station_id, reports}, {_from, _ref}, state) do
     metar = :ets.insert(:metar_data, {station_id, reports})
-    {:reply, metar, %{}}
+    {:reply, metar, state}
+  end
+
+  def handle_call({:put_station, station_id, metar}, {_from, _ref}, state) do
+    station = {station_id, %{
+      elevation_m: List.to_float(metar.elevation_m),
+      latitude: List.to_float(metar.latitude),
+      longitude: List.to_float(metar.longitude)
+    }}
+    :ets.insert(:station_data, station)
+    {:reply, station, state}
   end
 
   ####################
   # Helper Functions #
   ####################
-
-  defp timestamp, do: DateTime.utc_now |> DateTime.to_iso8601
 end
