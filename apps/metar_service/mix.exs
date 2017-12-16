@@ -7,6 +7,7 @@ defmodule MetarService.Mixfile do
       version: "0.1.0",
       elixir: "~> 1.5",
       start_permanent: Mix.env == :prod,
+      aliases: aliases(),
       deps: deps()
     ]
   end
@@ -28,6 +29,13 @@ defmodule MetarService.Mixfile do
       {:sweet_xml, "~> 0.6.5"},
       {:math, "~> 0.3.0"},
       {:dialyxir, "~> 0.5", only: [:dev], runtime: false}
+    ]
+  end
+
+  defp aliases do
+    # do not start the supervision tree in test environment
+    [
+      test: "test --no-start"
     ]
   end
 end

@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<response xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XML-Schema-instance" version="1.2" xsi:noNamespaceSchemaLocation="http://aviationweather.gov/adds/schema/taf1_2.xsd">
+  <request_index>92570178</request_index>
+  <data_source name="tafs" />
+  <request type="retrieve" />
+  <errors />
+  <warnings />
+  <time_taken_ms>914</time_taken_ms>
+  <data num_results="199">
+    <TAF>
+      <raw_text>TAF CYVR 231739Z 2318/2424 10005KT P6SM FEW030 SCT050 BKN080 TEMPO 2318/2408 P6SM -SHRA SCT030 BKN050 OVC080 BECMG 2319/2321 16012KT FM240800 20010KT P6SM -SHRA FEW020 BKN050 OVC150 FM241600 18010KT P6SM -RA SCT015 BKN030 OVC050 TEMPO 2416/2424 5SM -SHRA BR FEW008 BKN015 OVC030 BECMG 2417/2419 13012KT RMK NXT FCST BY 232100Z</raw_text>
+      <station_id>CYVR</station_id>
+      <issue_time>2017-11-23T17:39:00Z</issue_time>
+      <bulletin_time>2017-11-23T17:00:00Z</bulletin_time>
+      <valid_time_from>2017-11-23T18:00:00Z</valid_time_from>
+      <valid_time_to>2017-11-25T00:00:00Z</valid_time_to>
+      <remarks>RMK NXT FCST BY 232100Z</remarks>
+      <latitude>49.17</latitude>
+      <longitude>-123.17</longitude>
+      <elevation_m>2.0</elevation_m>
+      <forecast>
+        <fcst_time_from>2017-11-23T18:00:00Z</fcst_time_from>
+        <fcst_time_to>2017-11-23T19:00:00Z</fcst_time_to>
+        <wind_dir_degrees>100</wind_dir_degrees>
+        <wind_speed_kt>5</wind_speed_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <sky_condition sky_cover="FEW" cloud_base_ft_agl="3000" />
+        <sky_condition sky_cover="SCT" cloud_base_ft_agl="5000" />
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="8000" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2017-11-23T18:00:00Z</fcst_time_from>
+        <fcst_time_to>2017-11-24T08:00:00Z</fcst_time_to>
+        <change_indicator>TEMPO</change_indicator>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <wx_string>-SHRA</wx_string>
+        <sky_condition sky_cover="SCT" cloud_base_ft_agl="3000" />
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="5000" />
+        <sky_condition sky_cover="OVC" cloud_base_ft_agl="8000" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2017-11-23T19:00:00Z</fcst_time_from>
+        <fcst_time_to>2017-11-24T08:00:00Z</fcst_time_to>
+        <change_indicator>BECMG</change_indicator>
+        <time_becoming>2017-11-23T21:00:00Z</time_becoming>
+        <wind_dir_degrees>160</wind_dir_degrees>
+        <wind_speed_kt>12</wind_speed_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <sky_condition sky_cover="FEW" cloud_base_ft_agl="3000" />
+        <sky_condition sky_cover="SCT" cloud_base_ft_agl="5000" />
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="8000" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2017-11-24T08:00:00Z</fcst_time_from>
+        <fcst_time_to>2017-11-24T16:00:00Z</fcst_time_to>
+        <change_indicator>FM</change_indicator>
+        <wind_dir_degrees>200</wind_dir_degrees>
+        <wind_speed_kt>10</wind_speed_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <wx_string>-SHRA</wx_string>
+        <sky_condition sky_cover="FEW" cloud_base_ft_agl="2000" />
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="5000" />
+        <sky_condition sky_cover="OVC" cloud_base_ft_agl="15000" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2017-11-24T16:00:00Z</fcst_time_from>
+        <fcst_time_to>2017-11-24T17:00:00Z</fcst_time_to>
+        <change_indicator>FM</change_indicator>
+        <wind_dir_degrees>180</wind_dir_degrees>
+        <wind_speed_kt>10</wind_speed_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <wx_string>-RA</wx_string>
+        <sky_condition sky_cover="SCT" cloud_base_ft_agl="1500" />
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="3000" />
+        <sky_condition sky_cover="OVC" cloud_base_ft_agl="5000" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2017-11-24T16:00:00Z</fcst_time_from>
+        <fcst_time_to>2017-11-25T00:00:00Z</fcst_time_to>
+        <change_indicator>TEMPO</change_indicator>
+        <visibility_statute_mi>5.0</visibility_statute_mi>
+        <wx_string>-SHRA BR</wx_string>
+        <sky_condition sky_cover="FEW" cloud_base_ft_agl="800" />
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="1500" />
+        <sky_condition sky_cover="OVC" cloud_base_ft_agl="3000" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2017-11-24T17:00:00Z</fcst_time_from>
+        <fcst_time_to>2017-11-25T00:00:00Z</fcst_time_to>
+        <change_indicator>BECMG</change_indicator>
+        <time_becoming>2017-11-24T19:00:00Z</time_becoming>
+        <wind_dir_degrees>130</wind_dir_degrees>
+        <wind_speed_kt>12</wind_speed_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <wx_string>-RA</wx_string>
+        <sky_condition sky_cover="SCT" cloud_base_ft_agl="1500" />
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="3000" />
+        <sky_condition sky_cover="OVC" cloud_base_ft_agl="5000" />
+      </forecast>
+    </TAF>
+    <TAF>
+      <raw_text>TAF AMD CYYR 231843Z 2318/2418 35005KT 11/2SM -SN BR OVC003 TEMPO 2318/2320 3SM -SN FM232000 34010KT P6SM OVC010 TEMPO 2320/2407 5SM -SN BECMG 2323/2401 29012KT FM240700 26012KT P6SM SCT030 BKN080 FM241400 26015G25KT 4SM -SHSN SCT030 BKN080 RMK NXT FCST BY 240000Z</raw_text>
+      <station_id>CYYR</station_id>
+      <issue_time>2017-11-23T18:43:00Z</issue_time>
+      <bulletin_time>2017-11-23T18:00:00Z</bulletin_time>
+      <valid_time_from>2017-11-23T18:00:00Z</valid_time_from>
+      <valid_time_to>2017-11-24T18:00:00Z</valid_time_to>
+      <remarks>RMK NXT FCST BY 240000Z</remarks>
+      <latitude>53.32</latitude>
+      <longitude>-60.42</longitude>
+      <elevation_m>49.0</elevation_m>
+      <forecast>
+        <fcst_time_from>2017-11-23T18:00:00Z</fcst_time_from>
+        <fcst_time_to>2017-11-23T20:00:00Z</fcst_time_to>
+        <wind_dir_degrees>350</wind_dir_degrees>
+        <wind_speed_kt>5</wind_speed_kt>
+        <visibility_statute_mi>1.5</visibility_statute_mi>
+        <wx_string>-SN BR</wx_string>
+        <sky_condition sky_cover="OVC" cloud_base_ft_agl="300" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2017-11-23T18:00:00Z</fcst_time_from>
+        <fcst_time_to>2017-11-23T20:00:00Z</fcst_time_to>
+        <change_indicator>TEMPO</change_indicator>
+        <visibility_statute_mi>3.0</visibility_statute_mi>
+        <wx_string>-SN</wx_string>
+      </forecast>
+      <forecast>
+        <fcst_time_from>2017-11-23T20:00:00Z</fcst_time_from>
+        <fcst_time_to>2017-11-23T23:00:00Z</fcst_time_to>
+        <change_indicator>FM</change_indicator>
+        <wind_dir_degrees>340</wind_dir_degrees>
+        <wind_speed_kt>10</wind_speed_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <sky_condition sky_cover="OVC" cloud_base_ft_agl="1000" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2017-11-23T20:00:00Z</fcst_time_from>
+        <fcst_time_to>2017-11-24T07:00:00Z</fcst_time_to>
+        <change_indicator>TEMPO</change_indicator>
+        <visibility_statute_mi>5.0</visibility_statute_mi>
+        <wx_string>-SN</wx_string>
+      </forecast>
+      <forecast>
+        <fcst_time_from>2017-11-23T23:00:00Z</fcst_time_from>
+        <fcst_time_to>2017-11-24T07:00:00Z</fcst_time_to>
+        <change_indicator>BECMG</change_indicator>
+        <time_becoming>2017-11-24T01:00:00Z</time_becoming>
+        <wind_dir_degrees>290</wind_dir_degrees>
+        <wind_speed_kt>12</wind_speed_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <sky_condition sky_cover="OVC" cloud_base_ft_agl="1000" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2017-11-24T07:00:00Z</fcst_time_from>
+        <fcst_time_to>2017-11-24T14:00:00Z</fcst_time_to>
+        <change_indicator>FM</change_indicator>
+        <wind_dir_degrees>260</wind_dir_degrees>
+        <wind_speed_kt>12</wind_speed_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <sky_condition sky_cover="SCT" cloud_base_ft_agl="3000" />
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="8000" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2017-11-24T14:00:00Z</fcst_time_from>
+        <fcst_time_to>2017-11-24T18:00:00Z</fcst_time_to>
+        <change_indicator>FM</change_indicator>
+        <wind_dir_degrees>260</wind_dir_degrees>
+        <wind_speed_kt>15</wind_speed_kt>
+        <wind_gust_kt>25</wind_gust_kt>
+        <visibility_statute_mi>4.0</visibility_statute_mi>
+        <wx_string>-SHSN</wx_string>
+        <sky_condition sky_cover="SCT" cloud_base_ft_agl="3000" />
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="8000" />
+      </forecast>
+    </TAF>
+    <TAF>
+      <raw_text>TAF CYIV 231841Z 2319/2407 VRB03KT P6SM FEW012 BKN100 TEMPO 2321/2323 2SM -SN OVC012 FM232300 15010KT 4SM -SN BKN012 OVC030 TEMPO 2323/2407 1SM -SN OVC006 RMK NXT FCST BY 240100Z</raw_text>
+      <station_id>CYIV</station_id>
+      <issue_time>2017-11-23T18:41:00Z</issue_time>
+      <bulletin_time>2017-11-23T18:00:00Z</bulletin_time>
+      <valid_time_from>2017-11-23T19:00:00Z</valid_time_from>
+      <valid_time_to>2017-11-24T07:00:00Z</valid_time_to>
+      <remarks>RMK NXT FCST BY 240100Z</remarks>
+      <latitude>53.85</latitude>
+      <longitude>-94.65</longitude>
+      <elevation_m>237.0</elevation_m>
+      <forecast>
+        <fcst_time_from>2017-11-23T19:00:00Z</fcst_time_from>
+        <fcst_time_to>2017-11-23T23:00:00Z</fcst_time_to>
+        <wind_dir_degrees>0</wind_dir_degrees>
+        <wind_speed_kt>3</wind_speed_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <sky_condition sky_cover="FEW" cloud_base_ft_agl="1200" />
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="10000" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2017-11-23T21:00:00Z</fcst_time_from>
+        <fcst_time_to>2017-11-23T23:00:00Z</fcst_time_to>
+        <change_indicator>TEMPO</change_indicator>
+        <visibility_statute_mi>2.0</visibility_statute_mi>
+        <wx_string>-SN</wx_string>
+        <sky_condition sky_cover="OVC" cloud_base_ft_agl="1200" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2017-11-23T23:00:00Z</fcst_time_from>
+        <fcst_time_to>2017-11-24T07:00:00Z</fcst_time_to>
+        <change_indicator>FM</change_indicator>
+        <wind_dir_degrees>150</wind_dir_degrees>
+        <wind_speed_kt>10</wind_speed_kt>
+        <visibility_statute_mi>4.0</visibility_statute_mi>
+        <wx_string>-SN</wx_string>
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="1200" />
+        <sky_condition sky_cover="OVC" cloud_base_ft_agl="3000" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2017-11-23T23:00:00Z</fcst_time_from>
+        <fcst_time_to>2017-11-24T07:00:00Z</fcst_time_to>
+        <change_indicator>TEMPO</change_indicator>
+        <visibility_statute_mi>1.0</visibility_statute_mi>
+        <wx_string>-SN</wx_string>
+        <sky_condition sky_cover="OVC" cloud_base_ft_agl="600" />
+      </forecast>
+    </TAF>
+    <TAF>
+      <raw_text>TAF CYVC 231841Z 2319/2407 12010KT 5SM -SN OVC015 TEMPO 2319/2407 P6SM NSW OVC025 BECMG 2403/2405 29012G22KT RMK NXT FCST BY 240100Z</raw_text>
+      <station_id>CYVC</station_id>
+      <issue_time>2017-11-23T18:41:00Z</issue_time>
+      <bulletin_time>2017-11-23T18:00:00Z</bulletin_time>
+      <valid_time_from>2017-11-23T19:00:00Z</valid_time_from>
+      <valid_time_to>2017-11-24T07:00:00Z</valid_time_to>
+      <remarks>RMK NXT FCST BY 240100Z</remarks>
+      <latitude>55.15</latitude>
+      <longitude>-105.27</longitude>
+      <elevation_m>379.0</elevation_m>
+      <forecast>
+        <fcst_time_from>2017-11-23T19:00:00Z</fcst_time_from>
+        <fcst_time_to>2017-11-24T03:00:00Z</fcst_time_to>
+        <wind_dir_degrees>120</wind_dir_degrees>
+        <wind_speed_kt>10</wind_speed_kt>
+        <visibility_statute_mi>5.0</visibility_statute_mi>
+        <wx_string>-SN</wx_string>
+        <sky_condition sky_cover="OVC" cloud_base_ft_agl="1500" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2017-11-23T19:00:00Z</fcst_time_from>
+        <fcst_time_to>2017-11-24T07:00:00Z</fcst_time_to>
+        <change_indicator>TEMPO</change_indicator>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <wx_string>NSW</wx_string>
+        <sky_condition sky_cover="OVC" cloud_base_ft_agl="2500" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2017-11-24T03:00:00Z</fcst_time_from>
+        <fcst_time_to>2017-11-24T07:00:00Z</fcst_time_to>
+        <change_indicator>BECMG</change_indicator>
+        <time_becoming>2017-11-24T05:00:00Z</time_becoming>
+        <wind_dir_degrees>290</wind_dir_degrees>
+        <wind_speed_kt>12</wind_speed_kt>
+        <wind_gust_kt>22</wind_gust_kt>
+        <visibility_statute_mi>5.0</visibility_statute_mi>
+        <wx_string>-SN</wx_string>
+        <sky_condition sky_cover="OVC" cloud_base_ft_agl="1500" />
+      </forecast>
+    </TAF>
+    <TAF>
+      <raw_text>TAF CYTH 231841Z 2319/2407 VRB03KT P6SM FEW050 OVC100 TEMPO 2320/2322 2SM -SN BKN020 OVC050 FM232200 12008KT 1SM -SN OVC005 TEMPO 2322/2407 3SM -SN OVC012 RMK NXT FCST BY 240100Z</raw_text>
+      <station_id>CYTH</station_id>
+      <issue_time>2017-11-23T18:41:00Z</issue_time>
+      <bulletin_time>2017-11-23T18:00:00Z</bulletin_time>
+      <valid_time_from>2017-11-23T19:00:00Z</valid_time_from>
+      <valid_time_to>2017-11-24T07:00:00Z</valid_time_to>
+      <remarks>RMK NXT FCST BY 240100Z</remarks>
+      <latitude>55.78</latitude>
+      <longitude>-97.87</longitude>
+      <elevation_m>218.0</elevation_m>
+      <forecast>
+        <fcst_time_from>2017-11-23T19:00:00Z</fcst_time_from>
+        <fcst_time_to>2017-11-23T22:00:00Z</fcst_time_to>
+        <wind_dir_degrees>0</wind_dir_degrees>
+        <wind_speed_kt>3</wind_speed_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <sky_condition sky_cover="FEW" cloud_base_ft_agl="5000" />
+        <sky_condition sky_cover="OVC" cloud_base_ft_agl="10000" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2017-11-23T20:00:00Z</fcst_time_from>
+        <fcst_time_to>2017-11-23T22:00:00Z</fcst_time_to>
+        <change_indicator>TEMPO</change_indicator>
+        <visibility_statute_mi>2.0</visibility_statute_mi>
+        <wx_string>-SN</wx_string>
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="2000" />
+        <sky_condition sky_cover="OVC" cloud_base_ft_agl="5000" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2017-11-23T22:00:00Z</fcst_time_from>
+        <fcst_time_to>2017-11-24T07:00:00Z</fcst_time_to>
+        <change_indicator>TEMPO</change_indicator>
+        <visibility_statute_mi>3.0</visibility_statute_mi>
+        <wx_string>-SN</wx_string>
+        <sky_condition sky_cover="OVC" cloud_base_ft_agl="1200" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2017-11-23T22:00:00Z</fcst_time_from>
+        <fcst_time_to>2017-11-24T07:00:00Z</fcst_time_to>
+        <change_indicator>FM</change_indicator>
+        <wind_dir_degrees>120</wind_dir_degrees>
+        <wind_speed_kt>8</wind_speed_kt>
+        <visibility_statute_mi>1.0</visibility_statute_mi>
+        <wx_string>-SN</wx_string>
+        <sky_condition sky_cover="OVC" cloud_base_ft_agl="500" />
+      </forecast>
+    </TAF>
+    <TAF>
+      <raw_text>TAF CYNE 231841Z 2319/2407 15012KT P6SM -SN SCT012 OVC060 TEMPO 2319/2321 2SM -SN OVC012 FM232100 15012KT 4SM -SN SCT010 OVC025 TEMPO 2321/2324 1SM -SN OVC006 PROB40 2321/2324 4SM -PL BR FM240000 14010KT P6SM OVC020 TEMPO 2400/2407 2SM -SN OVC008 PROB30 2400/2407 4SM -FZDZ BR RMK FCST BASED ON AUTO OBS. NXT FCST BY 240100Z</raw_text>
+      <station_id>CYNE</station_id>
+      <issue_time>2017-11-23T18:41:00Z</issue_time>
+      <bulletin_time>2017-11-23T18:00:00Z</bulletin_time>
+      <valid_time_from>2017-11-23T19:00:00Z</valid_time_from>
+      <valid_time_to>2017-11-24T07:00:00Z</valid_time_to>
+      <remarks>RMK FCST BASED ON AUTO OBS. NXT FCST BY 240100Z</remarks>
+      <latitude>53.97</latitude>
+      <longitude>-97.82</longitude>
+      <elevation_m>223.0</elevation_m>
+      <forecast>
+        <fcst_time_from>2017-11-23T19:00:00Z</fcst_time_from>
+        <fcst_time_to>2017-11-23T21:00:00Z</fcst_time_to>
+        <change_indicator>TEMPO</change_indicator>
+        <visibility_statute_mi>2.0</visibility_statute_mi>
+        <wx_string>-SN</wx_string>
+        <sky_condition sky_cover="OVC" cloud_base_ft_agl="1200" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2017-11-23T19:00:00Z</fcst_time_from>
+        <fcst_time_to>2017-11-23T21:00:00Z</fcst_time_to>
+        <wind_dir_degrees>150</wind_dir_degrees>
+        <wind_speed_kt>12</wind_speed_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <wx_string>-SN</wx_string>
+        <sky_condition sky_cover="SCT" cloud_base_ft_agl="1200" />
+        <sky_condition sky_cover="OVC" cloud_base_ft_agl="6000" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2017-11-23T21:00:00Z</fcst_time_from>
+        <fcst_time_to>2017-11-24T00:00:00Z</fcst_time_to>
+        <change_indicator>PROB</change_indicator>
+        <probability>40</probability>
+        <visibility_statute_mi>4.0</visibility_statute_mi>
+        <wx_string>-PL BR</wx_string>
+      </forecast>
+      <forecast>
+        <fcst_time_from>2017-11-23T21:00:00Z</fcst_time_from>
+        <fcst_time_to>2017-11-24T00:00:00Z</fcst_time_to>
+        <change_indicator>TEMPO</change_indicator>
+        <visibility_statute_mi>1.0</visibility_statute_mi>
+        <wx_string>-SN</wx_string>
+        <sky_condition sky_cover="OVC" cloud_base_ft_agl="600" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2017-11-23T21:00:00Z</fcst_time_from>
+        <fcst_time_to>2017-11-24T00:00:00Z</fcst_time_to>
+        <change_indicator>FM</change_indicator>
+        <wind_dir_degrees>150</wind_dir_degrees>
+        <wind_speed_kt>12</wind_speed_kt>
+        <visibility_statute_mi>4.0</visibility_statute_mi>
+        <wx_string>-SN</wx_string>
+        <sky_condition sky_cover="SCT" cloud_base_ft_agl="1000" />
+        <sky_condition sky_cover="OVC" cloud_base_ft_agl="2500" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2017-11-24T00:00:00Z</fcst_time_from>
+        <fcst_time_to>2017-11-24T07:00:00Z</fcst_time_to>
+        <change_indicator>PROB</change_indicator>
+        <probability>30</probability>
+        <visibility_statute_mi>4.0</visibility_statute_mi>
+        <wx_string>-FZDZ BR</wx_string>
+      </forecast>
+      <forecast>
+        <fcst_time_from>2017-11-24T00:00:00Z</fcst_time_from>
+        <fcst_time_to>2017-11-24T07:00:00Z</fcst_time_to>
+        <change_indicator>TEMPO</change_indicator>
+        <visibility_statute_mi>2.0</visibility_statute_mi>
+        <wx_string>-SN</wx_string>
+        <sky_condition sky_cover="OVC" cloud_base_ft_agl="800" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2017-11-24T00:00:00Z</fcst_time_from>
+        <fcst_time_to>2017-11-24T07:00:00Z</fcst_time_to>
+        <change_indicator>FM</change_indicator>
+        <wind_dir_degrees>140</wind_dir_degrees>
+        <wind_speed_kt>10</wind_speed_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <sky_condition sky_cover="OVC" cloud_base_ft_agl="2000" />
+      </forecast>
+    </TAF>
+    <TAF>
+      <raw_text>TAF CYPA 231841Z 2319/2407 10010KT P6SM SCT006 OVC012 TEMPO 2319/2321 4SM BR OVC008 FM232100 24012KT P6SM SCT020 TEMPO 2321/2324 BKN020 FM240500 29012KT P6SM SCT015 BKN100 RMK NXT FCST BY 240100Z</raw_text>
+      <station_id>CYPA</station_id>
+      <issue_time>2017-11-23T18:41:00Z</issue_time>
+      <bulletin_time>2017-11-23T18:00:00Z</bulletin_time>
+      <valid_time_from>2017-11-23T19:00:00Z</valid_time_from>
+      <valid_time_to>2017-11-24T07:00:00Z</valid_time_to>
+      <remarks>RMK NXT FCST BY 240100Z</remarks>
+      <latitude>53.22</latitude>
+      <longitude>-105.67</longitude>
+      <elevation_m>428.0</elevation_m>
+      <forecast>
+        <fcst_time_from>2017-11-23T19:00:00Z</fcst_time_from>
+        <fcst_time_to>2017-11-23T21:00:00Z</fcst_time_to>
+        <change_indicator>TEMPO</change_indicator>
+        <visibility_statute_mi>4.0</visibility_statute_mi>
+        <wx_string>BR</wx_string>
+        <sky_condition sky_cover="OVC" cloud_base_ft_agl="800" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2017-11-23T19:00:00Z</fcst_time_from>
+        <fcst_time_to>2017-11-23T21:00:00Z</fcst_time_to>
+        <wind_dir_degrees>100</wind_dir_degrees>
+        <wind_speed_kt>10</wind_speed_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <sky_condition sky_cover="SCT" cloud_base_ft_agl="600" />
+        <sky_condition sky_cover="OVC" cloud_base_ft_agl="1200" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2017-11-23T21:00:00Z</fcst_time_from>
+        <fcst_time_to>2017-11-24T00:00:00Z</fcst_time_to>
+        <change_indicator>TEMPO</change_indicator>
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="2000" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2017-11-23T21:00:00Z</fcst_time_from>
+        <fcst_time_to>2017-11-24T05:00:00Z</fcst_time_to>
+        <change_indicator>FM</change_indicator>
+        <wind_dir_degrees>240</wind_dir_degrees>
+        <wind_speed_kt>12</wind_speed_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <sky_condition sky_cover="SCT" cloud_base_ft_agl="2000" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2017-11-24T05:00:00Z</fcst_time_from>
+        <fcst_time_to>2017-11-24T07:00:00Z</fcst_time_to>
+        <change_indicator>FM</change_indicator>
+        <wind_dir_degrees>290</wind_dir_degrees>
+        <wind_speed_kt>12</wind_speed_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <sky_condition sky_cover="SCT" cloud_base_ft_agl="1500" />
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="10000" />
+      </forecast>
+    </TAF>
+    <TAF>
+      <raw_text>TAF CYGX 231841Z 2319/2407 28010KT P6SM FEW050 SCT120 TEMPO 2400/2402 2SM -SN BKN020 OVC050 FM240200 08005KT 1SM -SN OVC005 TEMPO 2402/2407 3SM -SN OVC012 RMK NXT FCST BY 240100Z</raw_text>
+      <station_id>CYGX</station_id>
+      <issue_time>2017-11-23T18:41:00Z</issue_time>
+      <bulletin_time>2017-11-23T18:00:00Z</bulletin_time>
+      <valid_time_from>2017-11-23T19:00:00Z</valid_time_from>
+      <valid_time_to>2017-11-24T07:00:00Z</valid_time_to>
+      <remarks>RMK NXT FCST BY 240100Z</remarks>
+      <latitude>56.35</latitude>
+      <longitude>-94.7</longitude>
+      <elevation_m>145.0</elevation_m>
+      <forecast>
+        <fcst_time_from>2017-11-23T19:00:00Z</fcst_time_from>
+        <fcst_time_to>2017-11-24T02:00:00Z</fcst_time_to>
+        <wind_dir_degrees>280</wind_dir_degrees>
+        <wind_speed_kt>10</wind_speed_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <sky_condition sky_cover="FEW" cloud_base_ft_agl="5000" />
+        <sky_condition sky_cover="SCT" cloud_base_ft_agl="12000" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2017-11-24T00:00:00Z</fcst_time_from>
+        <fcst_time_to>2017-11-24T02:00:00Z</fcst_time_to>
+        <change_indicator>TEMPO</change_indicator>
+        <visibility_statute_mi>2.0</visibility_statute_mi>
+        <wx_string>-SN</wx_string>
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="2000" />
+        <sky_condition sky_cover="OVC" cloud_base_ft_agl="5000" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2017-11-24T02:00:00Z</fcst_time_from>
+        <fcst_time_to>2017-11-24T07:00:00Z</fcst_time_to>
+        <change_indicator>TEMPO</change_indicator>
+        <visibility_statute_mi>3.0</visibility_statute_mi>
+        <wx_string>-SN</wx_string>
+        <sky_condition sky_cover="OVC" cloud_base_ft_agl="1200" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2017-11-24T02:00:00Z</fcst_time_from>
+        <fcst_time_to>2017-11-24T07:00:00Z</fcst_time_to>
+        <change_indicator>FM</change_indicator>
+        <wind_dir_degrees>80</wind_dir_degrees>
+        <wind_speed_kt>5</wind_speed_kt>
+        <visibility_statute_mi>1.0</visibility_statute_mi>
+        <wx_string>-SN</wx_string>
+        <sky_condition sky_cover="OVC" cloud_base_ft_agl="500" />
+      </forecast>
+    </TAF>
+  </data>
+</response>
