@@ -1,5 +1,6 @@
 defmodule MetarService.Coordinator do
   use GenServer
+  require Logger
 
   alias MetarService.{Worker,Region,Store}
 
@@ -17,14 +18,14 @@ defmodule MetarService.Coordinator do
   ####################
 
   def init(:ok) do
-    IO.puts "#{__MODULE__}: Populating data..."
+    Logger.info "#{__MODULE__}: Populating data..."
     Process.send_after(self(), :refresh_metar, 1)
     Process.send_after(self(), :refresh_taf, 5001)
     {:ok, %{ metar_last_run: :never, taf_last_run: :never, station_last_run: :never}}
   end
 
   def handle_info(:refresh_metar, state) do
-    IO.puts "#{__MODULE__}: Refreshing metar data..."
+    Logger.info "#{__MODULE__}: Refreshing metar data..."
     Process.send_after(self(), :refresh_metar, @refresh_interval)
     update_metar_data()
     state = state |> Map.put(:metar_last_run, timestamp())
@@ -33,7 +34,7 @@ defmodule MetarService.Coordinator do
   end
 
   def handle_info(:refresh_taf, state) do
-    IO.puts "#{__MODULE__}: Refreshing taf data..."
+    Logger.info "#{__MODULE__}: Refreshing taf data..."
     Process.send_after(self(), :refresh_taf, @refresh_interval)
     update_taf_data()
     state = state |> Map.put(:taf_last_run, timestamp())
@@ -52,7 +53,7 @@ defmodule MetarService.Coordinator do
       Store.put(:taf, List.to_string(station), List.to_string(forecast))
     end)
 
-    IO.puts "#{__MODULE__}: Done updating Taf"
+    Logger.info "#{__MODULE__}: Done updating Taf"
   end
 
   defp update_metar_data() do
@@ -63,7 +64,7 @@ defmodule MetarService.Coordinator do
       Store.put(:station, metar.station, metar)
     end)
 
-    IO.puts "#{__MODULE__}: Done updating Metar"
+    Logger.info "#{__MODULE__}: Done updating Metar"
   end
 
   defp get_tafs_asynchronously() do

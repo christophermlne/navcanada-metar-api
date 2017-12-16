@@ -3,4 +3,6 @@ Application.load(:metar_service)
 for app <- Application.spec(:metar_service, :applications) do
   Application.ensure_all_started(app)
 end
+Application.start(:poolboy)
+Application.start(:logger)
 ExUnit.start()

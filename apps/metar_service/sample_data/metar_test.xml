@@ -1,0 +1,1008 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<response xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XML-Schema-instance" version="1.2" xsi:noNamespaceSchemaLocation="http://aviationweather.gov/adds/schema/metar1_2.xsd">
+  <request_index>46776395</request_index>
+  <data_source name="metars" />
+  <request type="retrieve" />
+  <errors />
+  <warnings />
+  <time_taken_ms>45</time_taken_ms>
+  <data num_results="612">
+    <METAR>
+      <raw_text>CYVR 161253Z VRB02KT 20SM FEW022 SCT063 BKN120 06/03 A2951 RMK SC2SC1AC4 SLP995</raw_text>
+      <station_id>CYVR</station_id>
+      <observation_time>2017-11-16T12:53:00Z</observation_time>
+      <latitude>49.17</latitude>
+      <longitude>-123.17</longitude>
+      <temp_c>6.0</temp_c>
+      <dewpoint_c>3.0</dewpoint_c>
+      <wind_dir_degrees>0</wind_dir_degrees>
+      <wind_speed_kt>2</wind_speed_kt>
+      <visibility_statute_mi>20.0</visibility_statute_mi>
+      <altim_in_hg>29.509842</altim_in_hg>
+      <sea_level_pressure_mb>999.5</sea_level_pressure_mb>
+      <sky_condition sky_cover="FEW" cloud_base_ft_agl="2200" />
+      <sky_condition sky_cover="SCT" cloud_base_ft_agl="6300" />
+      <sky_condition sky_cover="BKN" cloud_base_ft_agl="12000" />
+      <flight_category>VFR</flight_category>
+      <metar_type>SPECI</metar_type>
+      <elevation_m>2.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>CYVR 161216Z 24010KT 180V240 15SM -RA BKN023 OVC039 06/04 A2951 RMK SC6SC2 WSHFT 1207 SLP995</raw_text>
+      <station_id>CYVR</station_id>
+      <observation_time>2017-11-16T12:16:00Z</observation_time>
+      <latitude>49.17</latitude>
+      <longitude>-123.17</longitude>
+      <temp_c>6.0</temp_c>
+      <dewpoint_c>4.0</dewpoint_c>
+      <wind_dir_degrees>240</wind_dir_degrees>
+      <wind_speed_kt>10</wind_speed_kt>
+      <visibility_statute_mi>15.0</visibility_statute_mi>
+      <altim_in_hg>29.509842</altim_in_hg>
+      <sea_level_pressure_mb>999.5</sea_level_pressure_mb>
+      <wx_string>-RA</wx_string>
+      <sky_condition sky_cover="BKN" cloud_base_ft_agl="2300" />
+      <sky_condition sky_cover="OVC" cloud_base_ft_agl="3900" />
+      <flight_category>MVFR</flight_category>
+      <metar_type>SPECI</metar_type>
+      <elevation_m>2.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>CYVR 161213Z 24011KT 180V240 15SM -RA BKN027 OVC044 07/04 A2951 RMK SC6SC2 SLP995</raw_text>
+      <station_id>CYVR</station_id>
+      <observation_time>2017-11-16T12:13:00Z</observation_time>
+      <latitude>49.17</latitude>
+      <longitude>-123.17</longitude>
+      <temp_c>7.0</temp_c>
+      <dewpoint_c>4.0</dewpoint_c>
+      <wind_dir_degrees>240</wind_dir_degrees>
+      <wind_speed_kt>11</wind_speed_kt>
+      <visibility_statute_mi>15.0</visibility_statute_mi>
+      <altim_in_hg>29.509842</altim_in_hg>
+      <sea_level_pressure_mb>999.5</sea_level_pressure_mb>
+      <wx_string>-RA</wx_string>
+      <sky_condition sky_cover="BKN" cloud_base_ft_agl="2700" />
+      <sky_condition sky_cover="OVC" cloud_base_ft_agl="4400" />
+      <flight_category>MVFR</flight_category>
+      <metar_type>SPECI</metar_type>
+      <elevation_m>2.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>CYVR 161200Z 22004KT 170V230 20SM FEW028 BKN054 OVC079 07/06 A2951 RMK SC2SC5AC1 SLP995</raw_text>
+      <station_id>CYVR</station_id>
+      <observation_time>2017-11-16T12:00:00Z</observation_time>
+      <latitude>49.17</latitude>
+      <longitude>-123.17</longitude>
+      <temp_c>7.0</temp_c>
+      <dewpoint_c>6.0</dewpoint_c>
+      <wind_dir_degrees>220</wind_dir_degrees>
+      <wind_speed_kt>4</wind_speed_kt>
+      <visibility_statute_mi>20.0</visibility_statute_mi>
+      <altim_in_hg>29.509842</altim_in_hg>
+      <sea_level_pressure_mb>999.5</sea_level_pressure_mb>
+      <sky_condition sky_cover="FEW" cloud_base_ft_agl="2800" />
+      <sky_condition sky_cover="BKN" cloud_base_ft_agl="5400" />
+      <sky_condition sky_cover="OVC" cloud_base_ft_agl="7900" />
+      <flight_category>VFR</flight_category>
+      <metar_type>SPECI</metar_type>
+      <elevation_m>2.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>CYVR 161100Z 13007KT 20SM FEW032 BKN065 BKN078 06/05 A2949 RMK SC1SC5AC1 SLP989</raw_text>
+      <station_id>CYVR</station_id>
+      <observation_time>2017-11-16T11:00:00Z</observation_time>
+      <latitude>49.17</latitude>
+      <longitude>-123.17</longitude>
+      <temp_c>6.0</temp_c>
+      <dewpoint_c>5.0</dewpoint_c>
+      <wind_dir_degrees>130</wind_dir_degrees>
+      <wind_speed_kt>7</wind_speed_kt>
+      <visibility_statute_mi>20.0</visibility_statute_mi>
+      <altim_in_hg>29.489174</altim_in_hg>
+      <sea_level_pressure_mb>998.9</sea_level_pressure_mb>
+      <sky_condition sky_cover="FEW" cloud_base_ft_agl="3200" />
+      <sky_condition sky_cover="BKN" cloud_base_ft_agl="6500" />
+      <sky_condition sky_cover="BKN" cloud_base_ft_agl="7800" />
+      <flight_category>VFR</flight_category>
+      <metar_type>METAR</metar_type>
+      <elevation_m>2.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>CYVR 161000Z 13006KT 20SM FEW039 FEW051 BKN066 OVC094 06/06 A2948 RMK SC1SC1AC5AC1 SLP984</raw_text>
+      <station_id>CYVR</station_id>
+      <observation_time>2017-11-16T10:00:00Z</observation_time>
+      <latitude>49.17</latitude>
+      <longitude>-123.17</longitude>
+      <temp_c>6.0</temp_c>
+      <dewpoint_c>6.0</dewpoint_c>
+      <wind_dir_degrees>130</wind_dir_degrees>
+      <wind_speed_kt>6</wind_speed_kt>
+      <visibility_statute_mi>20.0</visibility_statute_mi>
+      <altim_in_hg>29.480314</altim_in_hg>
+      <sea_level_pressure_mb>998.4</sea_level_pressure_mb>
+      <sky_condition sky_cover="FEW" cloud_base_ft_agl="3900" />
+      <sky_condition sky_cover="FEW" cloud_base_ft_agl="5100" />
+      <sky_condition sky_cover="BKN" cloud_base_ft_agl="6600" />
+      <sky_condition sky_cover="OVC" cloud_base_ft_agl="9400" />
+      <flight_category>VFR</flight_category>
+      <metar_type>METAR</metar_type>
+      <elevation_m>2.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>CYVR 160938Z 12005KT 20SM FEW027 SCT041 OVC056 07/06 A2948 RMK SC1SC2SC5 SLP984</raw_text>
+      <station_id>CYVR</station_id>
+      <observation_time>2017-11-16T09:38:00Z</observation_time>
+      <latitude>49.17</latitude>
+      <longitude>-123.17</longitude>
+      <temp_c>7.0</temp_c>
+      <dewpoint_c>6.0</dewpoint_c>
+      <wind_dir_degrees>120</wind_dir_degrees>
+      <wind_speed_kt>5</wind_speed_kt>
+      <visibility_statute_mi>20.0</visibility_statute_mi>
+      <altim_in_hg>29.480314</altim_in_hg>
+      <sea_level_pressure_mb>998.4</sea_level_pressure_mb>
+      <sky_condition sky_cover="FEW" cloud_base_ft_agl="2700" />
+      <sky_condition sky_cover="SCT" cloud_base_ft_agl="4100" />
+      <sky_condition sky_cover="OVC" cloud_base_ft_agl="5600" />
+      <flight_category>VFR</flight_category>
+      <metar_type>SPECI</metar_type>
+      <elevation_m>2.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>CYVR 160900Z 15005KT 15SM -RA FEW016 BKN031 OVC055 07/06 A2948 RMK SC2SC5SC1 SLP985</raw_text>
+      <station_id>CYVR</station_id>
+      <observation_time>2017-11-16T09:00:00Z</observation_time>
+      <latitude>49.17</latitude>
+      <longitude>-123.17</longitude>
+      <temp_c>7.0</temp_c>
+      <dewpoint_c>6.0</dewpoint_c>
+      <wind_dir_degrees>150</wind_dir_degrees>
+      <wind_speed_kt>5</wind_speed_kt>
+      <visibility_statute_mi>15.0</visibility_statute_mi>
+      <altim_in_hg>29.480314</altim_in_hg>
+      <sea_level_pressure_mb>998.5</sea_level_pressure_mb>
+      <wx_string>-RA</wx_string>
+      <sky_condition sky_cover="FEW" cloud_base_ft_agl="1600" />
+      <sky_condition sky_cover="BKN" cloud_base_ft_agl="3100" />
+      <sky_condition sky_cover="OVC" cloud_base_ft_agl="5500" />
+      <flight_category>VFR</flight_category>
+      <metar_type>METAR</metar_type>
+      <elevation_m>2.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>CYWK 161256Z 17007KT 10SM -SN BKN011 OVC022 M03/M04 A2984 RMK SF5SC3 SLP139</raw_text>
+      <station_id>CYWK</station_id>
+      <observation_time>2017-11-16T12:56:00Z</observation_time>
+      <latitude>52.92</latitude>
+      <longitude>-66.87</longitude>
+      <temp_c>-3.0</temp_c>
+      <dewpoint_c>-4.0</dewpoint_c>
+      <wind_dir_degrees>170</wind_dir_degrees>
+      <wind_speed_kt>7</wind_speed_kt>
+      <visibility_statute_mi>10.0</visibility_statute_mi>
+      <altim_in_hg>29.840551</altim_in_hg>
+      <sea_level_pressure_mb>1013.9</sea_level_pressure_mb>
+      <wx_string>-SN</wx_string>
+      <sky_condition sky_cover="BKN" cloud_base_ft_agl="1100" />
+      <sky_condition sky_cover="OVC" cloud_base_ft_agl="2200" />
+      <flight_category>MVFR</flight_category>
+      <metar_type>METAR</metar_type>
+      <elevation_m>551.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>CYFC 161256Z AUTO 06005KT 9SM -RA OVC016 01/M01 A3006 RMK SLP181</raw_text>
+      <station_id>CYFC</station_id>
+      <observation_time>2017-11-16T12:56:00Z</observation_time>
+      <latitude>45.87</latitude>
+      <longitude>-66.52</longitude>
+      <temp_c>1.0</temp_c>
+      <dewpoint_c>-1.0</dewpoint_c>
+      <wind_dir_degrees>60</wind_dir_degrees>
+      <wind_speed_kt>5</wind_speed_kt>
+      <visibility_statute_mi>9.0</visibility_statute_mi>
+      <altim_in_hg>30.059055</altim_in_hg>
+      <sea_level_pressure_mb>1018.1</sea_level_pressure_mb>
+      <quality_control_flags>
+        <auto>TRUE</auto>
+      </quality_control_flags>
+      <wx_string>-RA</wx_string>
+      <sky_condition sky_cover="OVC" cloud_base_ft_agl="1600" />
+      <flight_category>MVFR</flight_category>
+      <metar_type>METAR</metar_type>
+      <elevation_m>20.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>CZUM 161254Z AUTO 15005KT 6SM -SN FEW009 OVC037 M03/M04 A2991 RMK SLP159</raw_text>
+      <station_id>CZUM</station_id>
+      <observation_time>2017-11-16T12:54:00Z</observation_time>
+      <latitude>53.53</latitude>
+      <longitude>-64.08</longitude>
+      <temp_c>-3.0</temp_c>
+      <dewpoint_c>-4.0</dewpoint_c>
+      <wind_dir_degrees>150</wind_dir_degrees>
+      <wind_speed_kt>5</wind_speed_kt>
+      <visibility_statute_mi>6.0</visibility_statute_mi>
+      <altim_in_hg>29.911417</altim_in_hg>
+      <sea_level_pressure_mb>1015.9</sea_level_pressure_mb>
+      <quality_control_flags>
+        <auto>TRUE</auto>
+      </quality_control_flags>
+      <wx_string>-SN</wx_string>
+      <sky_condition sky_cover="FEW" cloud_base_ft_agl="900" />
+      <sky_condition sky_cover="OVC" cloud_base_ft_agl="3700" />
+      <flight_category>VFR</flight_category>
+      <metar_type>SPECI</metar_type>
+      <elevation_m>440.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>CZUM 161243Z AUTO 15006KT 3SM -SN FEW009 OVC033 M03/M04 A2991 RMK SLP159</raw_text>
+      <station_id>CZUM</station_id>
+      <observation_time>2017-11-16T12:43:00Z</observation_time>
+      <latitude>53.53</latitude>
+      <longitude>-64.08</longitude>
+      <temp_c>-3.0</temp_c>
+      <dewpoint_c>-4.0</dewpoint_c>
+      <wind_dir_degrees>150</wind_dir_degrees>
+      <wind_speed_kt>6</wind_speed_kt>
+      <visibility_statute_mi>3.0</visibility_statute_mi>
+      <altim_in_hg>29.911417</altim_in_hg>
+      <sea_level_pressure_mb>1015.9</sea_level_pressure_mb>
+      <quality_control_flags>
+        <auto>TRUE</auto>
+      </quality_control_flags>
+      <wx_string>-SN</wx_string>
+      <sky_condition sky_cover="FEW" cloud_base_ft_agl="900" />
+      <sky_condition sky_cover="OVC" cloud_base_ft_agl="3300" />
+      <flight_category>MVFR</flight_category>
+      <metar_type>SPECI</metar_type>
+      <elevation_m>440.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>CYNA 161237Z AUTO 05004KT 9SM SCT019 M02/M03 A3017 RMK TS/LTNG TEMPO UNAVBL SLP219</raw_text>
+      <station_id>CYNA</station_id>
+      <observation_time>2017-11-16T12:37:00Z</observation_time>
+      <latitude>50.17</latitude>
+      <longitude>-61.82</longitude>
+      <temp_c>-2.0</temp_c>
+      <dewpoint_c>-3.0</dewpoint_c>
+      <wind_dir_degrees>50</wind_dir_degrees>
+      <wind_speed_kt>4</wind_speed_kt>
+      <visibility_statute_mi>9.0</visibility_statute_mi>
+      <altim_in_hg>30.171259</altim_in_hg>
+      <sea_level_pressure_mb>1021.9</sea_level_pressure_mb>
+      <quality_control_flags>
+        <auto>TRUE</auto>
+      </quality_control_flags>
+      <sky_condition sky_cover="SCT" cloud_base_ft_agl="1900" />
+      <flight_category>VFR</flight_category>
+      <metar_type>SPECI</metar_type>
+      <elevation_m>11.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>CZUM 161234Z AUTO 16004KT 2 1/2SM -SN FEW007 SCT024 OVC031 M03/M04 A2992 RMK VIS VRB 1 1/2-3 SLP161</raw_text>
+      <station_id>CZUM</station_id>
+      <observation_time>2017-11-16T12:34:00Z</observation_time>
+      <latitude>53.53</latitude>
+      <longitude>-64.08</longitude>
+      <temp_c>-3.0</temp_c>
+      <dewpoint_c>-4.0</dewpoint_c>
+      <wind_dir_degrees>160</wind_dir_degrees>
+      <wind_speed_kt>4</wind_speed_kt>
+      <visibility_statute_mi>2.5</visibility_statute_mi>
+      <altim_in_hg>29.920275</altim_in_hg>
+      <sea_level_pressure_mb>1016.1</sea_level_pressure_mb>
+      <quality_control_flags>
+        <auto>TRUE</auto>
+      </quality_control_flags>
+      <wx_string>-SN</wx_string>
+      <sky_condition sky_cover="FEW" cloud_base_ft_agl="700" />
+      <sky_condition sky_cover="SCT" cloud_base_ft_agl="2400" />
+      <sky_condition sky_cover="OVC" cloud_base_ft_agl="3100" />
+      <flight_category>IFR</flight_category>
+      <metar_type>SPECI</metar_type>
+      <elevation_m>440.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>CYQX 161218Z 30012KT 20SM FEW003 FEW026 SCT250 M05/M06 A3012 RMK ST2SC1CI1 SC TR SLP212</raw_text>
+      <station_id>CYQX</station_id>
+      <observation_time>2017-11-16T12:18:00Z</observation_time>
+      <latitude>48.95</latitude>
+      <longitude>-54.58</longitude>
+      <temp_c>-5.0</temp_c>
+      <dewpoint_c>-6.0</dewpoint_c>
+      <wind_dir_degrees>300</wind_dir_degrees>
+      <wind_speed_kt>12</wind_speed_kt>
+      <visibility_statute_mi>20.0</visibility_statute_mi>
+      <altim_in_hg>30.121063</altim_in_hg>
+      <sea_level_pressure_mb>1021.2</sea_level_pressure_mb>
+      <sky_condition sky_cover="FEW" cloud_base_ft_agl="300" />
+      <sky_condition sky_cover="FEW" cloud_base_ft_agl="2600" />
+      <sky_condition sky_cover="SCT" cloud_base_ft_agl="25000" />
+      <flight_category>VFR</flight_category>
+      <metar_type>SPECI</metar_type>
+      <elevation_m>151.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>CYMH 161212Z AUTO 28003KT 6SM BR CLR M07/M09 A3013 RMK SLP205</raw_text>
+      <station_id>CYMH</station_id>
+      <observation_time>2017-11-16T12:12:00Z</observation_time>
+      <latitude>52.28</latitude>
+      <longitude>-55.85</longitude>
+      <temp_c>-7.0</temp_c>
+      <dewpoint_c>-9.0</dewpoint_c>
+      <wind_dir_degrees>280</wind_dir_degrees>
+      <wind_speed_kt>3</wind_speed_kt>
+      <visibility_statute_mi>6.0</visibility_statute_mi>
+      <altim_in_hg>30.129921</altim_in_hg>
+      <sea_level_pressure_mb>1020.5</sea_level_pressure_mb>
+      <quality_control_flags>
+        <auto>TRUE</auto>
+      </quality_control_flags>
+      <wx_string>BR</wx_string>
+      <sky_condition sky_cover="CLR" />
+      <flight_category>VFR</flight_category>
+      <metar_type>SPECI</metar_type>
+      <elevation_m>11.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>CZUM 161212Z AUTO 16005KT 3SM -SN SCT009 OVC029 M03/M04 A2992 RMK SLP162</raw_text>
+      <station_id>CZUM</station_id>
+      <observation_time>2017-11-16T12:12:00Z</observation_time>
+      <latitude>53.53</latitude>
+      <longitude>-64.08</longitude>
+      <temp_c>-3.0</temp_c>
+      <dewpoint_c>-4.0</dewpoint_c>
+      <wind_dir_degrees>160</wind_dir_degrees>
+      <wind_speed_kt>5</wind_speed_kt>
+      <visibility_statute_mi>3.0</visibility_statute_mi>
+      <altim_in_hg>29.920275</altim_in_hg>
+      <sea_level_pressure_mb>1016.2</sea_level_pressure_mb>
+      <quality_control_flags>
+        <auto>TRUE</auto>
+      </quality_control_flags>
+      <wx_string>-SN</wx_string>
+      <sky_condition sky_cover="SCT" cloud_base_ft_agl="900" />
+      <sky_condition sky_cover="OVC" cloud_base_ft_agl="2900" />
+      <flight_category>MVFR</flight_category>
+      <metar_type>SPECI</metar_type>
+      <elevation_m>440.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>CZUM 161207Z AUTO 16004KT 2 1/2SM -SN SCT009 OVC025 M03/M04 A2992 RMK VIS VRB 1 3/4-3 SLP162</raw_text>
+      <station_id>CZUM</station_id>
+      <observation_time>2017-11-16T12:07:00Z</observation_time>
+      <latitude>53.53</latitude>
+      <longitude>-64.08</longitude>
+      <temp_c>-3.0</temp_c>
+      <dewpoint_c>-4.0</dewpoint_c>
+      <wind_dir_degrees>160</wind_dir_degrees>
+      <wind_speed_kt>4</wind_speed_kt>
+      <visibility_statute_mi>2.5</visibility_statute_mi>
+      <altim_in_hg>29.920275</altim_in_hg>
+      <sea_level_pressure_mb>1016.2</sea_level_pressure_mb>
+      <quality_control_flags>
+        <auto>TRUE</auto>
+      </quality_control_flags>
+      <wx_string>-SN</wx_string>
+      <sky_condition sky_cover="SCT" cloud_base_ft_agl="900" />
+      <sky_condition sky_cover="OVC" cloud_base_ft_agl="2500" />
+      <flight_category>IFR</flight_category>
+      <metar_type>SPECI</metar_type>
+      <elevation_m>440.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>CYQX 161205Z 30011KT 20SM BKN003 BKN250 M05/M06 A3012 RMK ST6CI1 SLP212</raw_text>
+      <station_id>CYQX</station_id>
+      <observation_time>2017-11-16T12:05:00Z</observation_time>
+      <latitude>48.95</latitude>
+      <longitude>-54.58</longitude>
+      <temp_c>-5.0</temp_c>
+      <dewpoint_c>-6.0</dewpoint_c>
+      <wind_dir_degrees>300</wind_dir_degrees>
+      <wind_speed_kt>11</wind_speed_kt>
+      <visibility_statute_mi>20.0</visibility_statute_mi>
+      <altim_in_hg>30.121063</altim_in_hg>
+      <sea_level_pressure_mb>1021.2</sea_level_pressure_mb>
+      <sky_condition sky_cover="BKN" cloud_base_ft_agl="300" />
+      <sky_condition sky_cover="BKN" cloud_base_ft_agl="25000" />
+      <flight_category>LIFR</flight_category>
+      <metar_type>SPECI</metar_type>
+      <elevation_m>151.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>CZUM 161203Z AUTO 17003KT 2SM -SN SCT009 OVC025 M03/M04 A2993 RMK VIS VRB 1 1/2-3 SLP163</raw_text>
+      <station_id>CZUM</station_id>
+      <observation_time>2017-11-16T12:03:00Z</observation_time>
+      <latitude>53.53</latitude>
+      <longitude>-64.08</longitude>
+      <temp_c>-3.0</temp_c>
+      <dewpoint_c>-4.0</dewpoint_c>
+      <wind_dir_degrees>170</wind_dir_degrees>
+      <wind_speed_kt>3</wind_speed_kt>
+      <visibility_statute_mi>2.0</visibility_statute_mi>
+      <altim_in_hg>29.929134</altim_in_hg>
+      <sea_level_pressure_mb>1016.3</sea_level_pressure_mb>
+      <quality_control_flags>
+        <auto>TRUE</auto>
+      </quality_control_flags>
+      <wx_string>-SN</wx_string>
+      <sky_condition sky_cover="SCT" cloud_base_ft_agl="900" />
+      <sky_condition sky_cover="OVC" cloud_base_ft_agl="2500" />
+      <flight_category>IFR</flight_category>
+      <metar_type>SPECI</metar_type>
+      <elevation_m>440.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>CYMH 161201Z AUTO 27003KT 5SM BR CLR M07/M09 A3013 RMK SLP205</raw_text>
+      <station_id>CYMH</station_id>
+      <observation_time>2017-11-16T12:01:00Z</observation_time>
+      <latitude>52.28</latitude>
+      <longitude>-55.85</longitude>
+      <temp_c>-7.0</temp_c>
+      <dewpoint_c>-9.0</dewpoint_c>
+      <wind_dir_degrees>270</wind_dir_degrees>
+      <wind_speed_kt>3</wind_speed_kt>
+      <visibility_statute_mi>5.0</visibility_statute_mi>
+      <altim_in_hg>30.129921</altim_in_hg>
+      <sea_level_pressure_mb>1020.5</sea_level_pressure_mb>
+      <quality_control_flags>
+        <auto>TRUE</auto>
+      </quality_control_flags>
+      <wx_string>BR</wx_string>
+      <sky_condition sky_cover="CLR" />
+      <flight_category>MVFR</flight_category>
+      <metar_type>SPECI</metar_type>
+      <elevation_m>11.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>CYMH 161200Z AUTO 26003KT 7SM CLR M07/M09 A3013 RMK SLP205</raw_text>
+      <station_id>CYMH</station_id>
+      <observation_time>2017-11-16T12:00:00Z</observation_time>
+      <latitude>52.28</latitude>
+      <longitude>-55.85</longitude>
+      <temp_c>-7.0</temp_c>
+      <dewpoint_c>-9.0</dewpoint_c>
+      <wind_dir_degrees>260</wind_dir_degrees>
+      <wind_speed_kt>3</wind_speed_kt>
+      <visibility_statute_mi>7.0</visibility_statute_mi>
+      <altim_in_hg>30.129921</altim_in_hg>
+      <sea_level_pressure_mb>1020.5</sea_level_pressure_mb>
+      <quality_control_flags>
+        <auto>TRUE</auto>
+      </quality_control_flags>
+      <sky_condition sky_cover="CLR" />
+      <flight_category>VFR</flight_category>
+      <metar_type>SPECI</metar_type>
+      <elevation_m>11.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>CYJT 161200Z 35004KT 15SM FEW008 FEW210 M06/M08 A3020 RMK SC1CI1 CI TR FROIN SLP231</raw_text>
+      <station_id>CYJT</station_id>
+      <observation_time>2017-11-16T12:00:00Z</observation_time>
+      <latitude>48.55</latitude>
+      <longitude>-58.57</longitude>
+      <temp_c>-6.0</temp_c>
+      <dewpoint_c>-8.0</dewpoint_c>
+      <wind_dir_degrees>350</wind_dir_degrees>
+      <wind_speed_kt>4</wind_speed_kt>
+      <visibility_statute_mi>15.0</visibility_statute_mi>
+      <altim_in_hg>30.200787</altim_in_hg>
+      <sea_level_pressure_mb>1023.1</sea_level_pressure_mb>
+      <sky_condition sky_cover="FEW" cloud_base_ft_agl="800" />
+      <sky_condition sky_cover="FEW" cloud_base_ft_agl="21000" />
+      <flight_category>VFR</flight_category>
+      <metar_type>SPECI</metar_type>
+      <elevation_m>26.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>LFVP 161200Z 36013KT CAVOK 01/M03 Q1021 NOSIG</raw_text>
+      <station_id>LFVP</station_id>
+      <observation_time>2017-11-16T12:00:00Z</observation_time>
+      <latitude>46.77</latitude>
+      <longitude>-56.18</longitude>
+      <temp_c>1.0</temp_c>
+      <dewpoint_c>-3.0</dewpoint_c>
+      <wind_dir_degrees>360</wind_dir_degrees>
+      <wind_speed_kt>13</wind_speed_kt>
+      <visibility_statute_mi>6.21</visibility_statute_mi>
+      <altim_in_hg>30.147638</altim_in_hg>
+      <quality_control_flags>
+        <no_signal>TRUE</no_signal>
+      </quality_control_flags>
+      <sky_condition sky_cover="CAVOK" />
+      <flight_category>VFR</flight_category>
+      <metar_type>METAR</metar_type>
+      <elevation_m>8.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>CYHZ 161200Z 12006KT 15SM FEW030 BKN260 M02/M03 A3016 RMK SC1CI6 SC TR SLP223</raw_text>
+      <station_id>CYHZ</station_id>
+      <observation_time>2017-11-16T12:00:00Z</observation_time>
+      <latitude>44.87</latitude>
+      <longitude>-63.5</longitude>
+      <temp_c>-2.0</temp_c>
+      <dewpoint_c>-3.0</dewpoint_c>
+      <wind_dir_degrees>120</wind_dir_degrees>
+      <wind_speed_kt>6</wind_speed_kt>
+      <visibility_statute_mi>15.0</visibility_statute_mi>
+      <altim_in_hg>30.159449</altim_in_hg>
+      <sea_level_pressure_mb>1022.3</sea_level_pressure_mb>
+      <sky_condition sky_cover="FEW" cloud_base_ft_agl="3000" />
+      <sky_condition sky_cover="BKN" cloud_base_ft_agl="26000" />
+      <flight_category>VFR</flight_category>
+      <metar_type>SPECI</metar_type>
+      <elevation_m>145.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>CYGV 161200Z AUTO 07008KT 9SM OVC022 M03/M04 A3013 RMK SLP206</raw_text>
+      <station_id>CYGV</station_id>
+      <observation_time>2017-11-16T12:00:00Z</observation_time>
+      <latitude>50.27</latitude>
+      <longitude>-63.62</longitude>
+      <temp_c>-3.0</temp_c>
+      <dewpoint_c>-4.0</dewpoint_c>
+      <wind_dir_degrees>70</wind_dir_degrees>
+      <wind_speed_kt>8</wind_speed_kt>
+      <visibility_statute_mi>9.0</visibility_statute_mi>
+      <altim_in_hg>30.129921</altim_in_hg>
+      <sea_level_pressure_mb>1020.6</sea_level_pressure_mb>
+      <quality_control_flags>
+        <auto>TRUE</auto>
+      </quality_control_flags>
+      <sky_condition sky_cover="OVC" cloud_base_ft_agl="2200" />
+      <flight_category>MVFR</flight_category>
+      <metar_type>SPECI</metar_type>
+      <elevation_m>33.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>CYGR 161200Z VRB02KT 20SM BKN024 00/M03 A3020 RMK SC7 SLP229</raw_text>
+      <station_id>CYGR</station_id>
+      <observation_time>2017-11-16T12:00:00Z</observation_time>
+      <latitude>47.42</latitude>
+      <longitude>-61.77</longitude>
+      <temp_c>0.0</temp_c>
+      <dewpoint_c>-3.0</dewpoint_c>
+      <wind_dir_degrees>0</wind_dir_degrees>
+      <wind_speed_kt>2</wind_speed_kt>
+      <visibility_statute_mi>20.0</visibility_statute_mi>
+      <altim_in_hg>30.200787</altim_in_hg>
+      <sea_level_pressure_mb>1022.9</sea_level_pressure_mb>
+      <sky_condition sky_cover="BKN" cloud_base_ft_agl="2400" />
+      <flight_category>MVFR</flight_category>
+      <metar_type>SPECI</metar_type>
+      <elevation_m>10.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>CYGP 161200Z 00000KT 15SM SCT020 BKN120 OVC240 M10/M13 A3014 RMK SC4AC2CI2 SLP210</raw_text>
+      <station_id>CYGP</station_id>
+      <observation_time>2017-11-16T12:00:00Z</observation_time>
+      <latitude>48.77</latitude>
+      <longitude>-64.47</longitude>
+      <temp_c>-10.0</temp_c>
+      <dewpoint_c>-13.0</dewpoint_c>
+      <wind_dir_degrees>0</wind_dir_degrees>
+      <wind_speed_kt>0</wind_speed_kt>
+      <visibility_statute_mi>15.0</visibility_statute_mi>
+      <altim_in_hg>30.138779</altim_in_hg>
+      <sea_level_pressure_mb>1021.0</sea_level_pressure_mb>
+      <sky_condition sky_cover="SCT" cloud_base_ft_agl="2000" />
+      <sky_condition sky_cover="BKN" cloud_base_ft_agl="12000" />
+      <sky_condition sky_cover="OVC" cloud_base_ft_agl="24000" />
+      <flight_category>VFR</flight_category>
+      <metar_type>SPECI</metar_type>
+      <elevation_m>33.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>CYFT 161200Z 03002KT 15SM OVC024 M02/M05 A3006 RMK SC8 SENT VIA CYDP SLP185</raw_text>
+      <station_id>CYFT</station_id>
+      <observation_time>2017-11-16T12:00:00Z</observation_time>
+      <latitude>55.07</latitude>
+      <longitude>-59.17</longitude>
+      <temp_c>-2.0</temp_c>
+      <dewpoint_c>-5.0</dewpoint_c>
+      <wind_dir_degrees>30</wind_dir_degrees>
+      <wind_speed_kt>2</wind_speed_kt>
+      <visibility_statute_mi>15.0</visibility_statute_mi>
+      <altim_in_hg>30.059055</altim_in_hg>
+      <sea_level_pressure_mb>1018.5</sea_level_pressure_mb>
+      <sky_condition sky_cover="OVC" cloud_base_ft_agl="2400" />
+      <flight_category>MVFR</flight_category>
+      <metar_type>SPECI</metar_type>
+      <elevation_m>71.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>CYCX 161200Z 10005KT 15SM BKN024 OVC055 00/M02 A3008 RMK SC7SC1 DA-1696FT SLP189</raw_text>
+      <station_id>CYCX</station_id>
+      <observation_time>2017-11-16T12:00:00Z</observation_time>
+      <latitude>45.82</latitude>
+      <longitude>-66.42</longitude>
+      <temp_c>0.0</temp_c>
+      <dewpoint_c>-2.0</dewpoint_c>
+      <wind_dir_degrees>100</wind_dir_degrees>
+      <wind_speed_kt>5</wind_speed_kt>
+      <visibility_statute_mi>15.0</visibility_statute_mi>
+      <altim_in_hg>30.079725</altim_in_hg>
+      <sea_level_pressure_mb>1018.9</sea_level_pressure_mb>
+      <sky_condition sky_cover="BKN" cloud_base_ft_agl="2400" />
+      <sky_condition sky_cover="OVC" cloud_base_ft_agl="5500" />
+      <flight_category>MVFR</flight_category>
+      <metar_type>SPECI</metar_type>
+      <elevation_m>51.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>CYFC 161200Z AUTO 06005KT 9SM BKN022 BKN028 OVC033 00/M01 A3008 RMK SLP188</raw_text>
+      <station_id>CYFC</station_id>
+      <observation_time>2017-11-16T12:00:00Z</observation_time>
+      <latitude>45.87</latitude>
+      <longitude>-66.52</longitude>
+      <temp_c>0.0</temp_c>
+      <dewpoint_c>-1.0</dewpoint_c>
+      <wind_dir_degrees>60</wind_dir_degrees>
+      <wind_speed_kt>5</wind_speed_kt>
+      <visibility_statute_mi>9.0</visibility_statute_mi>
+      <altim_in_hg>30.079725</altim_in_hg>
+      <sea_level_pressure_mb>1018.8</sea_level_pressure_mb>
+      <quality_control_flags>
+        <auto>TRUE</auto>
+      </quality_control_flags>
+      <sky_condition sky_cover="BKN" cloud_base_ft_agl="2200" />
+      <sky_condition sky_cover="BKN" cloud_base_ft_agl="2800" />
+      <sky_condition sky_cover="OVC" cloud_base_ft_agl="3300" />
+      <flight_category>MVFR</flight_category>
+      <metar_type>SPECI</metar_type>
+      <elevation_m>20.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>CYDP 161200Z VRB02KT 15SM FEW100 BKN120 BKN210 OVC220 M06/M12 A3004 RMK AC1AS5CI1CS1 SLP175</raw_text>
+      <station_id>CYDP</station_id>
+      <observation_time>2017-11-16T12:00:00Z</observation_time>
+      <latitude>56.53</latitude>
+      <longitude>-61.67</longitude>
+      <temp_c>-6.0</temp_c>
+      <dewpoint_c>-12.0</dewpoint_c>
+      <wind_dir_degrees>0</wind_dir_degrees>
+      <wind_speed_kt>2</wind_speed_kt>
+      <visibility_statute_mi>15.0</visibility_statute_mi>
+      <altim_in_hg>30.041338</altim_in_hg>
+      <sea_level_pressure_mb>1017.5</sea_level_pressure_mb>
+      <sky_condition sky_cover="FEW" cloud_base_ft_agl="10000" />
+      <sky_condition sky_cover="BKN" cloud_base_ft_agl="12000" />
+      <sky_condition sky_cover="BKN" cloud_base_ft_agl="21000" />
+      <sky_condition sky_cover="OVC" cloud_base_ft_agl="22000" />
+      <flight_category>VFR</flight_category>
+      <metar_type>SPECI</metar_type>
+      <elevation_m>7.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>CYDF 161200Z 02003KT 15SM BKN004 M09/M10 A3021 RMK ST7 SLP233</raw_text>
+      <station_id>CYDF</station_id>
+      <observation_time>2017-11-16T12:00:00Z</observation_time>
+      <latitude>49.22</latitude>
+      <longitude>-57.4</longitude>
+      <temp_c>-9.0</temp_c>
+      <dewpoint_c>-10.0</dewpoint_c>
+      <wind_dir_degrees>20</wind_dir_degrees>
+      <wind_speed_kt>3</wind_speed_kt>
+      <visibility_statute_mi>15.0</visibility_statute_mi>
+      <altim_in_hg>30.209646</altim_in_hg>
+      <sea_level_pressure_mb>1023.3</sea_level_pressure_mb>
+      <sky_condition sky_cover="BKN" cloud_base_ft_agl="400" />
+      <flight_category>LIFR</flight_category>
+      <metar_type>SPECI</metar_type>
+      <elevation_m>22.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>CYNA 161200Z AUTO 04004KT 9SM OVC019 M02/M04 A3017 RMK SLP220</raw_text>
+      <station_id>CYNA</station_id>
+      <observation_time>2017-11-16T12:00:00Z</observation_time>
+      <latitude>50.17</latitude>
+      <longitude>-61.82</longitude>
+      <temp_c>-2.0</temp_c>
+      <dewpoint_c>-4.0</dewpoint_c>
+      <wind_dir_degrees>40</wind_dir_degrees>
+      <wind_speed_kt>4</wind_speed_kt>
+      <visibility_statute_mi>9.0</visibility_statute_mi>
+      <altim_in_hg>30.171259</altim_in_hg>
+      <sea_level_pressure_mb>1022.0</sea_level_pressure_mb>
+      <quality_control_flags>
+        <auto>TRUE</auto>
+      </quality_control_flags>
+      <sky_condition sky_cover="OVC" cloud_base_ft_agl="1900" />
+      <flight_category>MVFR</flight_category>
+      <metar_type>SPECI</metar_type>
+      <elevation_m>11.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>CYPD 161200Z AUTO VRB02KT 9SM CLR M03/M04 A3019 RMK SLP231</raw_text>
+      <station_id>CYPD</station_id>
+      <observation_time>2017-11-16T12:00:00Z</observation_time>
+      <latitude>45.67</latitude>
+      <longitude>-61.37</longitude>
+      <temp_c>-3.0</temp_c>
+      <dewpoint_c>-4.0</dewpoint_c>
+      <wind_dir_degrees>0</wind_dir_degrees>
+      <wind_speed_kt>2</wind_speed_kt>
+      <visibility_statute_mi>9.0</visibility_statute_mi>
+      <altim_in_hg>30.188976</altim_in_hg>
+      <sea_level_pressure_mb>1023.1</sea_level_pressure_mb>
+      <quality_control_flags>
+        <auto>TRUE</auto>
+      </quality_control_flags>
+      <sky_condition sky_cover="CLR" />
+      <flight_category>VFR</flight_category>
+      <metar_type>METAR</metar_type>
+      <elevation_m>114.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>CZBF 161200Z 00000KT 15SM OVC030 M05/M06 A3012 RMK SC8 SLP207</raw_text>
+      <station_id>CZBF</station_id>
+      <observation_time>2017-11-16T12:00:00Z</observation_time>
+      <latitude>47.62</latitude>
+      <longitude>-65.75</longitude>
+      <temp_c>-5.0</temp_c>
+      <dewpoint_c>-6.0</dewpoint_c>
+      <wind_dir_degrees>0</wind_dir_degrees>
+      <wind_speed_kt>0</wind_speed_kt>
+      <visibility_statute_mi>15.0</visibility_statute_mi>
+      <altim_in_hg>30.121063</altim_in_hg>
+      <sea_level_pressure_mb>1020.7</sea_level_pressure_mb>
+      <sky_condition sky_cover="OVC" cloud_base_ft_agl="3000" />
+      <flight_category>MVFR</flight_category>
+      <metar_type>SPECI</metar_type>
+      <elevation_m>59.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>CYZX 161200Z 05007KT 15SM BKN050 01/M01 A3013 RMK SC5 WNDY HILL UNAVBL SLP206</raw_text>
+      <station_id>CYZX</station_id>
+      <observation_time>2017-11-16T12:00:00Z</observation_time>
+      <latitude>44.98</latitude>
+      <longitude>-64.92</longitude>
+      <temp_c>1.0</temp_c>
+      <dewpoint_c>-1.0</dewpoint_c>
+      <wind_dir_degrees>50</wind_dir_degrees>
+      <wind_speed_kt>7</wind_speed_kt>
+      <visibility_statute_mi>15.0</visibility_statute_mi>
+      <altim_in_hg>30.129921</altim_in_hg>
+      <sea_level_pressure_mb>1020.6</sea_level_pressure_mb>
+      <sky_condition sky_cover="BKN" cloud_base_ft_agl="5000" />
+      <flight_category>VFR</flight_category>
+      <metar_type>SPECI</metar_type>
+      <elevation_m>28.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>CYZV 161200Z 07005KT 15SM BKN022 OVC160 M03/M04 A3008 RMK SC7AC1 SLP192</raw_text>
+      <station_id>CYZV</station_id>
+      <observation_time>2017-11-16T12:00:00Z</observation_time>
+      <latitude>50.22</latitude>
+      <longitude>-66.27</longitude>
+      <temp_c>-3.0</temp_c>
+      <dewpoint_c>-4.0</dewpoint_c>
+      <wind_dir_degrees>70</wind_dir_degrees>
+      <wind_speed_kt>5</wind_speed_kt>
+      <visibility_statute_mi>15.0</visibility_statute_mi>
+      <altim_in_hg>30.079725</altim_in_hg>
+      <sea_level_pressure_mb>1019.2</sea_level_pressure_mb>
+      <sky_condition sky_cover="BKN" cloud_base_ft_agl="2200" />
+      <sky_condition sky_cover="OVC" cloud_base_ft_agl="16000" />
+      <flight_category>MVFR</flight_category>
+      <metar_type>SPECI</metar_type>
+      <elevation_m>55.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>CYYY 161200Z 15016G23KT 30SM FEW040 OVC170 M02/M06 A2997 RMK SC1AS7 SLP153</raw_text>
+      <station_id>CYYY</station_id>
+      <observation_time>2017-11-16T12:00:00Z</observation_time>
+      <latitude>48.6</latitude>
+      <longitude>-68.22</longitude>
+      <temp_c>-2.0</temp_c>
+      <dewpoint_c>-6.0</dewpoint_c>
+      <wind_dir_degrees>150</wind_dir_degrees>
+      <wind_speed_kt>16</wind_speed_kt>
+      <wind_gust_kt>23</wind_gust_kt>
+      <visibility_statute_mi>30.0</visibility_statute_mi>
+      <altim_in_hg>29.970472</altim_in_hg>
+      <sea_level_pressure_mb>1015.3</sea_level_pressure_mb>
+      <sky_condition sky_cover="FEW" cloud_base_ft_agl="4000" />
+      <sky_condition sky_cover="OVC" cloud_base_ft_agl="17000" />
+      <flight_category>VFR</flight_category>
+      <metar_type>METAR</metar_type>
+      <elevation_m>52.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>CYYT 161200Z 35014G23KT 15SM FEW020 FEW160 00/M03 A3001 RMK SC1AC1 SLP170</raw_text>
+      <station_id>CYYT</station_id>
+      <observation_time>2017-11-16T12:00:00Z</observation_time>
+      <latitude>47.62</latitude>
+      <longitude>-52.72</longitude>
+      <temp_c>0.0</temp_c>
+      <dewpoint_c>-3.0</dewpoint_c>
+      <wind_dir_degrees>350</wind_dir_degrees>
+      <wind_speed_kt>14</wind_speed_kt>
+      <wind_gust_kt>23</wind_gust_kt>
+      <visibility_statute_mi>15.0</visibility_statute_mi>
+      <altim_in_hg>30.008858</altim_in_hg>
+      <sea_level_pressure_mb>1017.0</sea_level_pressure_mb>
+      <sky_condition sky_cover="FEW" cloud_base_ft_agl="2000" />
+      <sky_condition sky_cover="FEW" cloud_base_ft_agl="16000" />
+      <flight_category>VFR</flight_category>
+      <metar_type>SPECI</metar_type>
+      <elevation_m>140.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>CYYR 161200Z 09002KT 15SM FEW048 BKN110 BKN250 M03/M07 A3008 RMK SC1AC6CI1 SLP190</raw_text>
+      <station_id>CYYR</station_id>
+      <observation_time>2017-11-16T12:00:00Z</observation_time>
+      <latitude>53.32</latitude>
+      <longitude>-60.42</longitude>
+      <temp_c>-3.0</temp_c>
+      <dewpoint_c>-7.0</dewpoint_c>
+      <wind_dir_degrees>90</wind_dir_degrees>
+      <wind_speed_kt>2</wind_speed_kt>
+      <visibility_statute_mi>15.0</visibility_statute_mi>
+      <altim_in_hg>30.079725</altim_in_hg>
+      <sea_level_pressure_mb>1019.0</sea_level_pressure_mb>
+      <sky_condition sky_cover="FEW" cloud_base_ft_agl="4800" />
+      <sky_condition sky_cover="BKN" cloud_base_ft_agl="11000" />
+      <sky_condition sky_cover="BKN" cloud_base_ft_agl="25000" />
+      <flight_category>VFR</flight_category>
+      <metar_type>SPECI</metar_type>
+      <elevation_m>49.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>CYYG 161200Z 09003KT 15SM OVC024 01/M03 A3018 RMK SC8 SLP225</raw_text>
+      <station_id>CYYG</station_id>
+      <observation_time>2017-11-16T12:00:00Z</observation_time>
+      <latitude>46.27</latitude>
+      <longitude>-63.12</longitude>
+      <temp_c>1.0</temp_c>
+      <dewpoint_c>-3.0</dewpoint_c>
+      <wind_dir_degrees>90</wind_dir_degrees>
+      <wind_speed_kt>3</wind_speed_kt>
+      <visibility_statute_mi>15.0</visibility_statute_mi>
+      <altim_in_hg>30.180119</altim_in_hg>
+      <sea_level_pressure_mb>1022.5</sea_level_pressure_mb>
+      <sky_condition sky_cover="OVC" cloud_base_ft_agl="2400" />
+      <flight_category>MVFR</flight_category>
+      <metar_type>METAR</metar_type>
+      <elevation_m>54.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>CYWK 161200Z 16007KT 3SM -SN SCT010 OVC029 M03/M04 A2985 RMK SF4SC4 /S01 AFT 10UTC/ SLP141</raw_text>
+      <station_id>CYWK</station_id>
+      <observation_time>2017-11-16T12:00:00Z</observation_time>
+      <latitude>52.92</latitude>
+      <longitude>-66.87</longitude>
+      <temp_c>-3.0</temp_c>
+      <dewpoint_c>-4.0</dewpoint_c>
+      <wind_dir_degrees>160</wind_dir_degrees>
+      <wind_speed_kt>7</wind_speed_kt>
+      <visibility_statute_mi>3.0</visibility_statute_mi>
+      <altim_in_hg>29.84941</altim_in_hg>
+      <sea_level_pressure_mb>1014.1</sea_level_pressure_mb>
+      <wx_string>-SN</wx_string>
+      <sky_condition sky_cover="SCT" cloud_base_ft_agl="1000" />
+      <sky_condition sky_cover="OVC" cloud_base_ft_agl="2900" />
+      <flight_category>MVFR</flight_category>
+      <metar_type>SPECI</metar_type>
+      <elevation_m>551.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>CYSJ 161200Z 12008G16KT 15SM -SHRA OVC014 04/02 A3007 RMK SC8 SLP189</raw_text>
+      <station_id>CYSJ</station_id>
+      <observation_time>2017-11-16T12:00:00Z</observation_time>
+      <latitude>45.32</latitude>
+      <longitude>-65.87</longitude>
+      <temp_c>4.0</temp_c>
+      <dewpoint_c>2.0</dewpoint_c>
+      <wind_dir_degrees>120</wind_dir_degrees>
+      <wind_speed_kt>8</wind_speed_kt>
+      <wind_gust_kt>16</wind_gust_kt>
+      <visibility_statute_mi>15.0</visibility_statute_mi>
+      <altim_in_hg>30.070866</altim_in_hg>
+      <sea_level_pressure_mb>1018.9</sea_level_pressure_mb>
+      <wx_string>-SHRA</wx_string>
+      <sky_condition sky_cover="OVC" cloud_base_ft_agl="1400" />
+      <flight_category>MVFR</flight_category>
+      <metar_type>SPECI</metar_type>
+      <elevation_m>109.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>CYQY 161200Z 24005KT 15SM BKN020 M01/M02 A3021 RMK SC7 SLP234</raw_text>
+      <station_id>CYQY</station_id>
+      <observation_time>2017-11-16T12:00:00Z</observation_time>
+      <latitude>46.17</latitude>
+      <longitude>-60.03</longitude>
+      <temp_c>-1.0</temp_c>
+      <dewpoint_c>-2.0</dewpoint_c>
+      <wind_dir_degrees>240</wind_dir_degrees>
+      <wind_speed_kt>5</wind_speed_kt>
+      <visibility_statute_mi>15.0</visibility_statute_mi>
+      <altim_in_hg>30.209646</altim_in_hg>
+      <sea_level_pressure_mb>1023.4</sea_level_pressure_mb>
+      <sky_condition sky_cover="BKN" cloud_base_ft_agl="2000" />
+      <flight_category>MVFR</flight_category>
+      <metar_type>SPECI</metar_type>
+      <elevation_m>62.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>CYQX 161200Z 30011KT 20SM FEW001 SCT003 BKN250 M05/M06 A3013 RMK SF1ST4CI3 SF TR SLP213</raw_text>
+      <station_id>CYQX</station_id>
+      <observation_time>2017-11-16T12:00:00Z</observation_time>
+      <latitude>48.95</latitude>
+      <longitude>-54.58</longitude>
+      <temp_c>-5.0</temp_c>
+      <dewpoint_c>-6.0</dewpoint_c>
+      <wind_dir_degrees>300</wind_dir_degrees>
+      <wind_speed_kt>11</wind_speed_kt>
+      <visibility_statute_mi>20.0</visibility_statute_mi>
+      <altim_in_hg>30.129921</altim_in_hg>
+      <sea_level_pressure_mb>1021.3</sea_level_pressure_mb>
+      <sky_condition sky_cover="FEW" cloud_base_ft_agl="100" />
+      <sky_condition sky_cover="SCT" cloud_base_ft_agl="300" />
+      <sky_condition sky_cover="BKN" cloud_base_ft_agl="25000" />
+      <flight_category>VFR</flight_category>
+      <metar_type>SPECI</metar_type>
+      <elevation_m>151.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>CYQM 161200Z 13010KT 15SM FEW025 BKN240 M00/M03 A3013 RMK SC1CI6 SLP208</raw_text>
+      <station_id>CYQM</station_id>
+      <observation_time>2017-11-16T12:00:00Z</observation_time>
+      <latitude>46.12</latitude>
+      <longitude>-64.67</longitude>
+      <temp_c>0.0</temp_c>
+      <dewpoint_c>-3.0</dewpoint_c>
+      <wind_dir_degrees>130</wind_dir_degrees>
+      <wind_speed_kt>10</wind_speed_kt>
+      <visibility_statute_mi>15.0</visibility_statute_mi>
+      <altim_in_hg>30.129921</altim_in_hg>
+      <sea_level_pressure_mb>1020.8</sea_level_pressure_mb>
+      <sky_condition sky_cover="FEW" cloud_base_ft_agl="2500" />
+      <sky_condition sky_cover="BKN" cloud_base_ft_agl="24000" />
+      <flight_category>VFR</flight_category>
+      <metar_type>SPECI</metar_type>
+      <elevation_m>71.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>CYQI 161200Z 10006KT 15SM OVC038 06/04 A3006 RMK SC8 SLP181</raw_text>
+      <station_id>CYQI</station_id>
+      <observation_time>2017-11-16T12:00:00Z</observation_time>
+      <latitude>43.83</latitude>
+      <longitude>-66.08</longitude>
+      <temp_c>6.0</temp_c>
+      <dewpoint_c>4.0</dewpoint_c>
+      <wind_dir_degrees>100</wind_dir_degrees>
+      <wind_speed_kt>6</wind_speed_kt>
+      <visibility_statute_mi>15.0</visibility_statute_mi>
+      <altim_in_hg>30.059055</altim_in_hg>
+      <sea_level_pressure_mb>1018.1</sea_level_pressure_mb>
+      <sky_condition sky_cover="OVC" cloud_base_ft_agl="3800" />
+      <flight_category>VFR</flight_category>
+      <metar_type>SPECI</metar_type>
+      <elevation_m>43.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>CZUM 161200Z AUTO 17004KT 2SM -SN SCT009 OVC023 M03/M04 A2993 RMK VIS VRB 1 1/2-3 PCPN 0.5MM PAST HR SLP163</raw_text>
+      <station_id>CZUM</station_id>
+      <observation_time>2017-11-16T12:00:00Z</observation_time>
+      <latitude>53.53</latitude>
+      <longitude>-64.08</longitude>
+      <temp_c>-3.0</temp_c>
+      <dewpoint_c>-4.0</dewpoint_c>
+      <wind_dir_degrees>170</wind_dir_degrees>
+      <wind_speed_kt>4</wind_speed_kt>
+      <visibility_statute_mi>2.0</visibility_statute_mi>
+      <altim_in_hg>29.929134</altim_in_hg>
+      <sea_level_pressure_mb>1016.3</sea_level_pressure_mb>
+      <quality_control_flags>
+        <auto>TRUE</auto>
+      </quality_control_flags>
+      <wx_string>-SN</wx_string>
+      <sky_condition sky_cover="SCT" cloud_base_ft_agl="900" />
+      <sky_condition sky_cover="OVC" cloud_base_ft_agl="2300" />
+      <flight_category>IFR</flight_category>
+      <metar_type>SPECI</metar_type>
+      <elevation_m>440.0</elevation_m>
+    </METAR>
+  </data>
+</response>
