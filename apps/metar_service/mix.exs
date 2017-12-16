@@ -30,4 +30,11 @@ defmodule MetarService.Mixfile do
       {:dialyxir, "~> 0.5", only: [:dev], runtime: false}
     ]
   end
+
+  defp aliases do
+    # do not start the supervision tree in test environment
+    [
+      test: "test --no-start"
+    ]
+  end
 end
