@@ -61,8 +61,8 @@ defmodule MetarService.Store do
   def handle_call({:put_station, station_id, metar}, {_from, _ref}, state) do
     station = {station_id, %{
       elevation_m: List.to_float(metar.elevation_m),
-      latitude: List.to_float(metar.latitude),
-      longitude: List.to_float(metar.longitude)
+      latitude: metar.latitude,
+      longitude: metar.longitude
     }}
     :ets.insert(:station_data, station)
     {:reply, station, state}

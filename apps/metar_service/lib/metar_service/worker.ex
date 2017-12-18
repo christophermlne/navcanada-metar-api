@@ -93,14 +93,14 @@ defmodule MetarService.Worker do
            %Station{
               station: station |> List.to_string,
               elevation_m: current.elevation_m,
-              longitude: current.longitude,
-              latitude: current.latitude,
+              longitude: current.longitude |> List.to_float,
+              latitude: current.latitude |> List.to_float,
               latest_observation_time: current.observation_time,
               flight_category: current.flight_category,
               sea_level_pressure_mb: current.sea_level_pressure_mb,
               reports: %{
-                current: current |> Map.get(:raw_text),
-                history: history |> Enum.map(&Map.get(&1, :raw_text))
+                current: current |> Map.get(:raw_text) |> List.to_string,
+                history: history |> Enum.map(&(Map.get(&1, :raw_text) |> List.to_string))
               }
             }
          end)
