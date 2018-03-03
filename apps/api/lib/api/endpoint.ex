@@ -1,42 +1,45 @@
 defmodule Api.Endpoint do
-  use Phoenix.Endpoint, otp_app: :api
+	use Plug.Router
+	require Logger
 
-  socket "/socket", Api.UserSocket
+	plug Plug.Logger
+	plug Plug.Parsers, parsers: [:json], json_decoder: Poison
+	plug :match
+	plug :dispatch
 
-  # Serve at "/" the static files from "priv/static" directory.
-  #
-  # You should set gzip to true if you are running phoenix.digest
-  # when deploying your static files in production.
-  plug Plug.Static,
-    at: "/", from: :api, gzip: false,
-    only: ~w(css fonts images js favicon.ico robots.txt)
+	def init(options) do
+		options
+	end
 
-  # Code reloading can be explicitly enabled under the
-  # :code_reloader configuration of your endpoint.
-  if code_reloading? do
-    socket "/phoenix/live_reload/socket", Phoenix.LiveReloader.Socket
-    plug Phoenix.LiveReloader
-    plug Phoenix.CodeReloader
+	def start_link do
+		# NOTE: This starts Cowboy listening on the default port of 4000
+		{:ok, _} = Plug.Adapters.Cowboy.http(__MODULE__, [])
+	end
+
+  get "/metar" do
+    {status, body} =
+    case conn.params do
+      %{"station" => station} ->
+        data = station |> find_station
+        {200, Poison.encode!(%{ response: data}) }
+      _ ->
+        {422, missing_station()}
+    end
+    send_resp(conn, status, body)
   end
 
-  plug Plug.RequestId
-  plug Plug.Logger
+  get _ do
+    send_resp(conn, 422, Poison.encode!(%{ response: %{ error: "Bad request"}}))
+  end
 
-  plug Plug.Parsers,
-    parsers: [:urlencoded, :multipart, :json],
-    pass: ["*/*"],
-    json_decoder: Poison
+  defp find_station(station) do
+    case MetarService.get(station) do
+      {:ok, data } -> data
+      {:error, data} -> %{ error: data}
+    end
+  end
 
-  plug Plug.MethodOverride
-  plug Plug.Head
-
-  # The session will be stored in the cookie and signed,
-  # this means its contents can be read but not tampered with.
-  # Set :encryption_salt if you would also like to encrypt it.
-  plug Plug.Session,
-    store: :cookie,
-    key: "_api_key",
-    signing_salt: "LeVp5Ojp"
-
-  plug Api.Router
+	defp missing_station do
+		Poison.encode!(%{ response: %{ error: "Expected a \"station\" key" }})
+	end
 end
