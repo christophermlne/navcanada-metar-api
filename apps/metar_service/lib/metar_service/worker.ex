@@ -95,7 +95,7 @@ defmodule MetarService.Worker do
               elevation_m: current.elevation_m,
               longitude: current.longitude |> List.to_float,
               latitude: current.latitude |> List.to_float,
-              latest_observation_time: current.observation_time,
+              latest_observation_time: current.observation_time |> List.to_string,
               flight_category: current.flight_category,
               sea_level_pressure_mb: current.sea_level_pressure_mb,
               reports: %{
