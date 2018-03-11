@@ -1,5 +1,3 @@
-# TODO i need a more flexible setup here.
-# the module making the request should not know anything about the urls beforehand
 defmodule MetarService.Adapters.Prod do
   @base_url "https://aviationweather.gov/adds/dataserver_current/httpparam?requestType=retrieve&format=xml&"
 
