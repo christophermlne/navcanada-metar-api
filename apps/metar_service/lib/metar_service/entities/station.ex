@@ -2,7 +2,16 @@ defmodule MetarService.Station do
   alias MetarService.{Region,Store}
 
   @enforce_keys [:station]
-  defstruct station: nil, reports: nil, longitude: nil, latitude: nil, flight_category: nil, latest_observation_time: nil, sea_level_pressure_mb: nil, elevation_m: nil
+  defstruct station: nil, name: nil, reports: nil, longitude: nil, latitude: nil, flight_category: nil, latest_observation_time: nil, sea_level_pressure_mb: nil, elevation_m: nil
+
+  def names() do
+    "apps/metar_service/data/stations/master.csv"
+    |> Path.expand
+    |> File.stream!
+    |> CSV.decode(strip_fields: true)
+    |> Enum.map(fn ({:ok, n}) -> n end)
+    # TODO enum into
+  end
 
   def valid_id?(station) do
     case Region.all() |> Enum.find(&(station == &1)) do

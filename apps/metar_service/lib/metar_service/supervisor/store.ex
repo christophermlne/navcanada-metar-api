@@ -1,5 +1,9 @@
+require IEx;
+
 defmodule MetarService.Store do
   use GenServer
+
+  alias MetarService.Station
 
   ##############
   # Client API #
@@ -38,6 +42,10 @@ defmodule MetarService.Store do
   def put(:station, station_id, reports), do:
     GenServer.call(__MODULE__, {:put_station, station_id, reports})
 
+  def update(:station, station_attrs), do:
+    GenServer.call(__MODULE__, {:update_station_name, station_attrs})
+
+
   ####################
   # Server Callbacks #
   ####################
@@ -59,6 +67,7 @@ defmodule MetarService.Store do
   end
 
   def handle_call({:put_station, station_id, metar}, {_from, _ref}, state) do
+    # TODO wtf
     station = {station_id, %{
       elevation_m: List.to_float(metar.elevation_m),
       latitude: metar.latitude,
@@ -66,6 +75,18 @@ defmodule MetarService.Store do
     }}
     :ets.insert(:station_data, station)
     {:reply, station, state}
+  end
+
+  def handle_call({:update_station_name, [station_id, station_name, _]}, {_from, _ref}, state) do
+    :ets.lookup(:station_data, station_id)
+    |> case do
+      [{_, data}] ->
+        data = Map.put(data, :name, station_name)
+        :ets.insert(:station_data, {station_id, data})
+        {:reply, data, state}
+      _ ->
+        {:reply, :error, state}
+    end
   end
 
   ####################

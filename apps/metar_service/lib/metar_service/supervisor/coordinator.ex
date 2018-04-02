@@ -2,7 +2,7 @@ defmodule MetarService.Coordinator do
   use GenServer
   require Logger
 
-  alias MetarService.{Worker,Region,Store}
+  alias MetarService.{Worker,Region,Station,Store}
 
   @refresh_interval 1000 * 60 * 10 * 6 # 1 hour
 
@@ -21,7 +21,13 @@ defmodule MetarService.Coordinator do
     Logger.info "#{__MODULE__}: Populating data..."
     Process.send_after(self(), :refresh_metar, 1)
     Process.send_after(self(), :refresh_taf, 5001)
-    {:ok, %{ metar_last_run: :never, taf_last_run: :never, station_last_run: :never}}
+    {:ok, %{
+      metar_last_run: :never,
+      taf_last_run: :never,
+      station_last_run: :never,
+      station_names_updated: :never
+      }
+    }
   end
 
   def handle_info(:refresh_metar, state) do
@@ -37,21 +43,39 @@ defmodule MetarService.Coordinator do
     Logger.info "#{__MODULE__}: Refreshing taf data..."
     Process.send_after(self(), :refresh_taf, @refresh_interval)
     update_taf_data()
-    state = state |> Map.put(:taf_last_run, timestamp())
+    state = Map.put(state, :taf_last_run, timestamp())
+    case state do
+      %{station_names_updated: :never} ->
+        Process.send_after(self(), :update_stations, 500)
+      _ ->
+        Logger.info "#{__MODULE__}: Stations already updated. Skipping."
+    end
     {:noreply, state}
+  end
+
+  def handle_info(:update_stations, state) do
+    # TODO if already updated then noop
+    Logger.info "#{__MODULE__}: Updating station data..."
+    update_station_data() # side effects!
+    {:noreply, %{state | station_names_updated: true}}
   end
 
   ####################
   # Helper Functions #
   ####################
 
-  defp update_taf_data() do
-    taf_data = get_taf_data()
+  defp update_station_data() do
+    Station.names()
+    |> Enum.each(&(Store.update(:station, &1)))
+    Logger.info "#{__MODULE__}: Done updating Stations"
+  end
 
-    Enum.each(taf_data, fn (taf) ->
-      {station, [forecast]} = taf
-      Store.put(:taf, List.to_string(station), List.to_string(forecast))
-    end)
+  defp update_taf_data() do
+    get_taf_data()
+    |> Enum.each(fn (taf) ->
+         {station, [forecast]} = taf
+         Store.put(:taf, List.to_string(station), List.to_string(forecast))
+       end)
 
     Logger.info "#{__MODULE__}: Done updating Taf"
   end
