@@ -10,6 +10,8 @@ defmodule MetarService.Adapters.Prod do
         {:ok, body}
       {:error, %{ reason: reason }} ->
         {:error, reason}
+      _ ->
+        {:error, "An unknown error has occurred"}
     end
   end
 

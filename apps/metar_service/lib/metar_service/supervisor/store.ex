@@ -22,7 +22,7 @@ defmodule MetarService.Store do
   def find(:metar, station_id) do
     case :ets.lookup(:metar_data, station_id) do
       [] -> {:error, "Report not available."}
-      [{_, metar}] -> {:ok, metar}
+      [{_, %{reports: metar}}] -> {:ok, metar}
     end
   end
 
@@ -32,6 +32,9 @@ defmodule MetarService.Store do
       [{_, station}] -> {:ok, station}
     end
   end
+
+  def all(:station), do:
+    :ets.tab2list(:station_data)
 
   def put(:taf, station_id, forecast), do:
     GenServer.call(__MODULE__, {:put_taf, station_id, forecast})
@@ -61,14 +64,16 @@ defmodule MetarService.Store do
     {:reply, taf, state}
   end
 
-  def handle_call({:put_metar, station_id, reports}, {_from, _ref}, state) do
-    metar = :ets.insert(:metar_data, {station_id, reports})
+  def handle_call({:put_metar, station_id, metar}, {_from, _ref}, state) do
+    metar = :ets.insert(:metar_data,
+      {station_id, %{reports: Map.get(metar, :reports)}}
+    )
     {:reply, metar, state}
   end
 
   def handle_call({:put_station, station_id, metar}, {_from, _ref}, state) do
-    # TODO wtf
     station = {station_id, %{
+      code: station_id,
       elevation_m: List.to_float(metar.elevation_m),
       latitude: metar.latitude,
       longitude: metar.longitude

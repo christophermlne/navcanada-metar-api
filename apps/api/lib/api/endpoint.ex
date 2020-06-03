@@ -20,19 +20,13 @@ defmodule Api.Endpoint do
   get "/search" do
     {status, body} =
     case conn.params do
-      %{"query" => _query} ->
-        {200, Poison.encode!%{ response: [
-            %{id: "CYKF", name: "Kitchener/Waterloo" },
-            %{id: "CYVR", name: "Vancouver International"},
-            %{id: "CYYZ", name: "Toronto Pearson International"},
-            %{id: "CYHD", name: "Really Fake Municipal Airport"}
-          ]
-        }
+      %{"query" => query} ->
+        {200, Poison.encode!%{response: search_station(query)}
       }
       _ ->
-        {422, Poison.encode!%{ response: "nope." }}
+        {422, Poison.encode!%{response: "nope."}}
     end
-    conn
+    conn # delete
     send_resp(conn, status, body)
   end
 
@@ -54,8 +48,12 @@ defmodule Api.Endpoint do
   defp find_station(station) do
     case MetarService.get(station) do
       {:ok, data } -> data
-      {:error, data} -> %{ error: data}
+      {:error, msg} -> %{ error: msg}
     end
+  end
+
+  defp search_station(query) do
+    MetarService.search(query)
   end
 
   defp missing_station do

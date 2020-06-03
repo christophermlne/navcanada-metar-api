@@ -15,10 +15,11 @@ defmodule MetarService.Application do
     Supervisor.start_link(children, opts)
   end
 
+  # TODO max restarts with exponential falloff
   defp poolboy_config do
     [{:name, {:local, :scraper_worker_pool}},
      {:worker_module, MetarService.Worker},
-     {:size, 5},
-     {:max_overflow, 2}]
+     {:size, 2},
+     {:max_overflow, 1}]
   end
 end
