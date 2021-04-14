@@ -27,6 +27,7 @@ defmodule MetarService.Mixfile do
       {:poolboy, "~> 1.5"},
       {:httpoison, "~> 0.13"},
       {:sweet_xml, "~> 0.6.5"},
+      {:csv, "~> 2.1"},
       {:math, "~> 0.3.0"},
       {:dialyxir, "~> 0.5", only: [:dev], runtime: false}
     ]

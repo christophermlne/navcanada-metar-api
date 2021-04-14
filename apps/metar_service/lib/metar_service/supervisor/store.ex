@@ -1,5 +1,9 @@
+require IEx;
+
 defmodule MetarService.Store do
   use GenServer
+
+  alias MetarService.Station
 
   ##############
   # Client API #
@@ -18,7 +22,7 @@ defmodule MetarService.Store do
   def find(:metar, station_id) do
     case :ets.lookup(:metar_data, station_id) do
       [] -> {:error, "Report not available."}
-      [{_, metar}] -> {:ok, metar}
+      [{_, %{reports: metar}}] -> {:ok, metar}
     end
   end
 
@@ -29,6 +33,9 @@ defmodule MetarService.Store do
     end
   end
 
+  def all(:station), do:
+    :ets.tab2list(:station_data)
+
   def put(:taf, station_id, forecast), do:
     GenServer.call(__MODULE__, {:put_taf, station_id, forecast})
 
@@ -37,6 +44,10 @@ defmodule MetarService.Store do
 
   def put(:station, station_id, reports), do:
     GenServer.call(__MODULE__, {:put_station, station_id, reports})
+
+  def update(:station, station_attrs), do:
+    GenServer.call(__MODULE__, {:update_station_name, station_attrs})
+
 
   ####################
   # Server Callbacks #
@@ -53,19 +64,34 @@ defmodule MetarService.Store do
     {:reply, taf, state}
   end
 
-  def handle_call({:put_metar, station_id, reports}, {_from, _ref}, state) do
-    metar = :ets.insert(:metar_data, {station_id, reports})
+  def handle_call({:put_metar, station_id, metar}, {_from, _ref}, state) do
+    metar = :ets.insert(:metar_data,
+      {station_id, %{reports: Map.get(metar, :reports)}}
+    )
     {:reply, metar, state}
   end
 
   def handle_call({:put_station, station_id, metar}, {_from, _ref}, state) do
     station = {station_id, %{
+      code: station_id,
       elevation_m: List.to_float(metar.elevation_m),
       latitude: metar.latitude,
       longitude: metar.longitude
     }}
     :ets.insert(:station_data, station)
     {:reply, station, state}
+  end
+
+  def handle_call({:update_station_name, [station_id, station_name, _]}, {_from, _ref}, state) do
+    :ets.lookup(:station_data, station_id)
+    |> case do
+      [{_, data}] ->
+        data = Map.put(data, :name, station_name)
+        :ets.insert(:station_data, {station_id, data})
+        {:reply, data, state}
+      _ ->
+        {:reply, :error, state}
+    end
   end
 
   ####################

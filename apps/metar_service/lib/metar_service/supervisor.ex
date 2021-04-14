@@ -1,3 +1,4 @@
+# TODO this way of defining a supervisor is deprecated in Elixir 1.6
 defmodule MetarService.Supervisor do
   use Supervisor
 
@@ -8,8 +9,8 @@ defmodule MetarService.Supervisor do
 
   def init(_) do
     children = [
-      worker(Coordinator, []),
-      worker(Store, [])
+      worker(Coordinator, [], restart: :temporary),
+      worker(Store, [], restart: :temporary)
     ]
     supervise(children, [strategy: :one_for_all])
   end

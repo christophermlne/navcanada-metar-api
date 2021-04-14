@@ -1,8 +1,17 @@
+require IEx;
 defmodule MetarService.Station do
   alias MetarService.{Region,Store}
 
   @enforce_keys [:station]
-  defstruct station: nil, reports: nil, longitude: nil, latitude: nil, flight_category: nil, latest_observation_time: nil, sea_level_pressure_mb: nil, elevation_m: nil
+  defstruct station: nil, name: nil, reports: nil, longitude: nil, latitude: nil, flight_category: nil, latest_observation_time: nil, sea_level_pressure_mb: nil, elevation_m: nil
+
+  def names() do
+    "apps/metar_service/data/stations/master.csv"
+    |> Path.expand
+    |> File.stream!
+    |> CSV.decode(strip_fields: true)
+    |> Enum.map(fn ({:ok, n}) -> n end)
+  end
 
   def valid_id?(station) do
     case Region.all() |> Enum.find(&(station == &1)) do
@@ -18,9 +27,9 @@ defmodule MetarService.Station do
     end
   end
 
-  defp distance_in_km_between_stations(station1, station2) do
-    with {:ok, {lat1, lon1}} <- coords_for(station1),
-         {:ok, {lat2, lon2}} <- coords_for(station2)
+  defp distance_in_km_between_stations(station1_id, station2_id) do
+    with {:ok, {lat1, lon1}} <- coords_for(station1_id),
+         {:ok, {lat2, lon2}} <- coords_for(station2_id)
     do
       distance_in_km_between_earth_coordinates(lat1, lon1, lat2, lon2)
     else
@@ -28,7 +37,7 @@ defmodule MetarService.Station do
     end
   end
 
-  defp distance_in_km_between_earth_coordinates(lat1, lon1, lat2, lon2) do
+  def distance_in_km_between_earth_coordinates(lat1, lon1, lat2, lon2) do
     # See SO answer here (written in JS): https://stackoverflow.com/a/365853/2802660
     import Math
     earth_radius_km = 6371
@@ -48,7 +57,7 @@ defmodule MetarService.Station do
   defp coords_for(station_id) do
     case Store.find(:station, station_id) do
       {:ok, station} ->
-        {:ok, {station.latitude, station.latitude}}
+        {:ok, {station.latitude, station.longitude}}
       {:error, _} -> {:error, "Coordinates unavailable for station"}
     end
   end

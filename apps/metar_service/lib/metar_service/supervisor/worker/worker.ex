@@ -96,9 +96,9 @@ defmodule MetarService.Worker do
               longitude: current.longitude |> List.to_float,
               latitude: current.latitude |> List.to_float,
               latest_observation_time: current.observation_time |> List.to_string,
-              flight_category: current.flight_category,
               sea_level_pressure_mb: current.sea_level_pressure_mb,
               reports: %{
+                flight_category: current.flight_category,
                 current: current |> Map.get(:raw_text) |> List.to_string,
                 history: history |> Enum.map(&(Map.get(&1, :raw_text) |> List.to_string))
               }
